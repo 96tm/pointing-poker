@@ -16,6 +16,7 @@ import ImageLoader from '../../connect-to-lobby/components/image-loader';
 import JobPosition from '../../connect-to-lobby/components/job-position';
 import LastName from '../../connect-to-lobby/components/last-name';
 import styles from '../../connect-to-lobby/connect-to-lobby.module.scss';
+import AsDealer from './as-dealer';
 
 interface IFormCreateGame {
   onCancelClick: () => void;
@@ -116,6 +117,7 @@ const FormCreateGame = ({}: IFormCreateGame): JSX.Element => {
       <Container className={styles.container}>
         <Row className={styles.rowTitle}>
           <HeadingText />
+          <AsDealer />
         </Row>
         <FirstName
           handleChangeInput={handleChangeInput}
