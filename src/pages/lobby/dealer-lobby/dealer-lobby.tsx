@@ -70,8 +70,6 @@ const DealerLobby = (): JSX.Element => {
   };
 
   const handleStart = async () => {
-    console.log('start');
-
     const response = await dispatch(
       thunks.startGameThunk({
         settings: gameSettings,
@@ -80,8 +78,6 @@ const DealerLobby = (): JSX.Element => {
       })
     );
     const payload = response.payload as Partial<IRequestResult>;
-    console.log('payload');
-
     if (payload.message) {
       dispatch(
         appActions.addOneInfoMessage(

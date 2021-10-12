@@ -1,7 +1,7 @@
 import React, { RefObject } from 'react';
 import { Col, Row } from 'react-bootstrap';
-import Avatar from './avatar';
-import InputFile from './file-input/input-file';
+import Avatar from './avatar-image/avatar-image';
+import InputFile from './file-input/file-input';
 
 interface IInputFileProps {
   fileName: string;
@@ -12,12 +12,14 @@ interface IInputFileProps {
   setFilePath: (state: string) => void;
 }
 
-function ImageLoader(
-  props: React.PropsWithChildren<IInputFileProps>
-): JSX.Element {
-  const { fileName, filePath, playerName, image, setFileName, setFilePath } =
-    props;
-
+function ImageLoader({
+  fileName,
+  filePath,
+  playerName,
+  image,
+  setFileName,
+  setFilePath,
+}: React.PropsWithChildren<IInputFileProps>): JSX.Element {
   return (
     <Row>
       <Col lg={7}>

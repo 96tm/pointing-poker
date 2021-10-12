@@ -5,6 +5,7 @@ import CreateIssueForm, {
 } from './create-issue-form/create-issue-form';
 
 interface ICreateIssuePopup extends ICreateIssueFormProps {
+  isShown: boolean;
   handleClose: () => void;
   handleSubmit: () => void;
 }
@@ -15,9 +16,11 @@ export function CreateIssuePopup({
   info,
   setIssueFields,
   warning,
+  isShown,
 }: ICreateIssuePopup): JSX.Element {
   return (
     <BasePopup
+      isShown={isShown}
       buttonCancelProps={{ onClick: handleClose }}
       buttonOkProps={{ onClick: handleSubmit }}
       buttonCancelText="No"

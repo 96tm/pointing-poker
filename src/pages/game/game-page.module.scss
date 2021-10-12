@@ -1,5 +1,6 @@
 $page-width: var(--page-width);
 $page-width-sidebar: var(--page-width-sidebar);
+$shadow: var(--main-shadow);
 
 .heading {
   padding: 40px 0 45px;
@@ -13,7 +14,7 @@ $page-width-sidebar: var(--page-width-sidebar);
   width: 70%;
   max-width: $page-width;
   padding: 0 38px 31px 38px;
-  box-shadow: 0px 4px 4px 0px #00000040;
+  box-shadow: $shadow;
   .main {
     display: flex;
     flex-wrap: wrap;

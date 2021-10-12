@@ -19,7 +19,7 @@ const WelcomePage = (): JSX.Element => {
   const [url, setUrl] = useState('');
   const [gameId, setGameId] = useState('');
   const [isLobbyConnect, setLobbyConnect] = useState(false);
-  const [isNewGame, setNewGame] = useState(false);
+  const [isNewGameShown, setIsNewGameShown] = useState(false);
   const gameStatus = useSelector(gameSelectors.selectStatus);
   const history = useHistory();
   const dispatch = useDispatch<AppDispatch>();
@@ -54,7 +54,7 @@ const WelcomePage = (): JSX.Element => {
   };
 
   const handleClickNewGame = async () => {
-    setNewGame(true);
+    setIsNewGameShown(true);
   };
 
   const handleClickConnect = async () => {
@@ -109,15 +109,17 @@ const WelcomePage = (): JSX.Element => {
   return (
     <div className={styles.container}>
       <div className={styles.content}>
-        {isLobbyConnect && (
-          <ConnectToLobby
-            gameId={gameId}
-            handleCancelClick={() => setLobbyConnect(false)}
-          />
-        )}
-        {isNewGame && (
-          <CreateGame handleCancelClick={() => setNewGame(false)} />
-        )}
+        <ConnectToLobby
+          isShown={isLobbyConnect}
+          gameId={gameId}
+          handleCancelClick={() => setLobbyConnect(false)}
+        />
+        {/* {isNewGame && ( */}
+        <CreateGame
+          isShown={isNewGameShown}
+          handleCancelClick={() => setIsNewGameShown(false)}
+        />
+        {/* )} */}
         <div className={styles.wrapperLogo}>
           <img src={logoGame} className={styles.logo} alt="logo game"></img>
         </div>

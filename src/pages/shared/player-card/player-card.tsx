@@ -98,42 +98,40 @@ const Player = ({ user }: IPlayerProps): JSX.Element => {
 
   return (
     <div className={styles.card}>
-      {showDealerKickPopup && (
-        <BasePopup
-          headingText="Kick player"
-          buttonOkText="Kick"
-          buttonCancelText="Cancel"
-          buttonOkProps={{ onClick: kick }}
-          buttonCancelProps={{ onClick: handleCloseKickPopup }}
-        >
-          <div className={styles.dealerKickPopup}>
-            Kick
-            <span className={styles.nameKickPlayer}>
-              {`
+      <BasePopup
+        isShown={showDealerKickPopup}
+        headingText="Kick player"
+        buttonOkText="Kick"
+        buttonCancelText="Cancel"
+        buttonOkProps={{ onClick: kick }}
+        buttonCancelProps={{ onClick: handleCloseKickPopup }}
+      >
+        <div className={styles.dealerKickPopup}>
+          Kick
+          <span className={styles.nameKickPlayer}>
+            {`
               ${user.firstName} ${user.lastName} `}
-            </span>
-            from the game?
-          </div>
-        </BasePopup>
-      )}
-      {showPlayerKickPopup && (
-        <BasePopup
-          headingText="Kick player"
-          buttonOkText="Kick"
-          buttonCancelText="Cancel"
-          buttonOkProps={{ onClick: startVotingToKick }}
-          buttonCancelProps={{ onClick: handleCloseKickPopup }}
-        >
-          <div className={styles.dealerKickPopup}>
-            Kick
-            <span className={styles.nameKickPlayer}>
-              {`
+          </span>
+          from the game?
+        </div>
+      </BasePopup>
+      <BasePopup
+        isShown={showPlayerKickPopup}
+        headingText="Kick player"
+        buttonOkText="Kick"
+        buttonCancelText="Cancel"
+        buttonOkProps={{ onClick: startVotingToKick }}
+        buttonCancelProps={{ onClick: handleCloseKickPopup }}
+      >
+        <div className={styles.dealerKickPopup}>
+          Kick
+          <span className={styles.nameKickPlayer}>
+            {`
               ${user.firstName} ${user.lastName} `}
-            </span>
-            from the game?
-          </div>
-        </BasePopup>
-      )}
+          </span>
+          from the game?
+        </div>
+      </BasePopup>
       {user?.image ? (
         <img className={styles.img} src={user?.image}></img>
       ) : (

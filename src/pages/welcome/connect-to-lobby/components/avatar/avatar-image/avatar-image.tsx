@@ -1,5 +1,5 @@
-import styles from '../connect-to-lobby.module.scss';
 import React, { RefObject } from 'react';
+import styles from './avatar-image.module.scss';
 
 interface IAvatarProps {
   image: RefObject<HTMLImageElement>;
@@ -7,9 +7,11 @@ interface IAvatarProps {
   playerName: string;
 }
 
-function Avatar(props: React.PropsWithChildren<IAvatarProps>): JSX.Element {
-  const { image, filePath, playerName } = props;
-
+function Avatar({
+  image,
+  filePath,
+  playerName,
+}: React.PropsWithChildren<IAvatarProps>): JSX.Element {
   return (
     <div
       className={styles.avatar}
@@ -18,7 +20,12 @@ function Avatar(props: React.PropsWithChildren<IAvatarProps>): JSX.Element {
       }}
     >
       {filePath === '' && playerName}
-      <img ref={image} src={filePath} alt="" style={{ display: 'none' }} />
+      <img
+        className={styles.avatarImg}
+        ref={image}
+        src={filePath}
+        alt="Avatar"
+      />
     </div>
   );
 }

@@ -52,10 +52,6 @@ export function GamePage(): JSX.Element {
   const [showVotingPopup, setShowVotingPopup] = useState(false);
 
   useEffect(() => {
-    console.log('hey');
-  }, []);
-
-  useEffect(() => {
     if (firstRender.current) {
       firstRender.current = false;
       return;
@@ -74,8 +70,6 @@ export function GamePage(): JSX.Element {
   }, [currentIssue?.id]);
 
   useEffect(() => {
-    console.log('gamest', gameStatus);
-
     switch (gameStatus) {
       case TGameStatus.inactive:
         {
@@ -180,43 +174,42 @@ export function GamePage(): JSX.Element {
 
   return (
     <div className={styles.container}>
-      {showVotingPopup && (
-        <BasePopup
-          headingText="Kick player"
-          buttonOkText="Yes"
-          buttonCancelText="No"
-          buttonOkProps={{ onClick: acceptKickVote }}
-          buttonCancelProps={{ onClick: declineKickVote }}
-        >
-          <div className={styles.dealerKickPopup}>
-            Kick
-            <span className={styles.nameKickPlayer}>
-              {User.getFullName(
-                entryRequest.firstName as string,
-                entryRequest.lastName
-              )}
-            </span>
-            from the game?
-          </div>
-        </BasePopup>
-      )}
-      {entryRequest && (
-        <BasePopup
-          buttonOkText="Admit"
-          buttonCancelText="Reject"
-          buttonCancelProps={{
-            onClick: rejectEntryRequest,
-          }}
-          buttonOkProps={{
-            onClick: admitEntryRequest,
-          }}
-        >
-          {`Admit ${User.getFullName(
-            entryRequest.firstName as string,
-            entryRequest.lastName
-          )}?`}
-        </BasePopup>
-      )}
+      <BasePopup
+        isShown={showVotingPopup}
+        headingText="Kick player"
+        buttonOkText="Yes"
+        buttonCancelText="No"
+        buttonOkProps={{ onClick: acceptKickVote }}
+        buttonCancelProps={{ onClick: declineKickVote }}
+      >
+        <div className={styles.dealerKickPopup}>
+          Kick
+          <span className={styles.nameKickPlayer}>
+            {User.getFullName(
+              entryRequest.firstName as string,
+              entryRequest.lastName
+            )}
+          </span>
+          from the game?
+        </div>
+      </BasePopup>
+
+      <BasePopup
+        isShown={Boolean(entryRequest)}
+        buttonOkText="Admit"
+        buttonCancelText="Reject"
+        buttonCancelProps={{
+          onClick: rejectEntryRequest,
+        }}
+        buttonOkProps={{
+          onClick: admitEntryRequest,
+        }}
+      >
+        {`Admit ${User.getFullName(
+          entryRequest.firstName as string,
+          entryRequest.lastName
+        )}?`}
+      </BasePopup>
       {gameStatus !== TGameStatus.inactive && (
         <div
           className={`${styles.content} ${

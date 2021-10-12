@@ -8,6 +8,7 @@ export enum TStatusCode {
 
 const DECK_SIZE = parseInt(process.env.REACT_APP_DECK_SIZE || '5');
 const MAX_FILE_SIZE = parseInt(process.env.REACT_APP_MAX_FILE_SIZE || '1');
+const MAX_AVATAR_SIZE = parseInt(process.env.REACT_APP_MAX_AVATAR_SIZE || '10');
 const SERVER_URL = process.env.REACT_APP_SERVER_URL || 'http://localhost:4000';
 const URL = process.env.REACT_APP_URL || 'http://localhost:3000';
 const OPACITY_REDUCTION_VALUE = 0.05;
@@ -29,4 +30,5 @@ export const APP_CONSTANTS = {
   ROUTER_TRANSITION_TIMEOUT,
   DECK_SIZE,
   MAX_FILE_SIZE,
+  MAX_AVATAR_SIZE,
 };

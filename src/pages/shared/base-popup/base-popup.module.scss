@@ -4,6 +4,60 @@ $shadow: var(--main-shadow);
 $font: var(--main-font);
 $bg-overlay: var(--bg-overlay);
 
+.modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: $popup-z-index;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0);
+
+  &.active {
+    visibility: visible;
+  }
+}
+
+.modalEnter {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0);
+}
+.modalEnterActive {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+  transition: opacity 400ms ease-in, visibility 400ms, transform 400ms;
+}
+
+.modalEnterDone {
+  opacity: 1;
+  transform: scale(1);
+  visibility: visible;
+}
+
+.modalExit {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+.modalExitActive {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0);
+
+  transition: opacity 400ms ease-out, visibility 400ms, transform 400ms ease-out;
+}
+
+.modalExitDone {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0);
+}
+
 .overlay {
   position: fixed;
   z-index: $overlay-z-index;

@@ -36,10 +36,8 @@ const PlayerCard = ({ user, customClass }: IPlayerCardProps): JSX.Element => {
     const popup = infoPopupRef.current;
     if (popup) {
       if (popup.getBoundingClientRect().right > globalThis.innerWidth) {
-        console.log('right');
         return styles.infoPopupRight;
       } else {
-        console.log('left', styles.infoPopupRight);
         return styles.infoPopupLeft;
       }
     }
@@ -120,44 +118,42 @@ const PlayerCard = ({ user, customClass }: IPlayerCardProps): JSX.Element => {
 
   return (
     <div className={`${styles.card} ${customClass || ''}`}>
-      {showDealerKickPopup && (
-        <BasePopup
-          headingText="Kick player"
-          buttonOkText="Kick"
-          buttonCancelText="Cancel"
-          buttonOkProps={{ onClick: kick }}
-          buttonCancelProps={{ onClick: handleCloseKickPopup }}
-        >
-          <div className={styles.kickPopup}>
-            {`Kick ${user.firstName} ${user.lastName} from the game?`}
-          </div>
-          <div className={styles.kickPopupText}>
-            Kick
-            <span className={styles.kickedPlayerName}>
-              {' '}
-              {User.getFullName(user?.firstName as string, user?.lastName)}{' '}
-            </span>
-            from the game?
-          </div>
-        </BasePopup>
-      )}
-      {showPlayerKickPopup && (
-        <BasePopup
-          headingText="Kick player"
-          buttonOkText="Kick"
-          buttonCancelText="Cancel"
-          buttonOkProps={{ onClick: startVotingToKick }}
-          buttonCancelProps={{ onClick: handleCloseKickPopup }}
-        >
-          <div className={styles.kickPopupText}>
-            Vote to kick{' '}
-            <span className={styles.kickedPlayerName}>
-              {User.getFullName(user?.firstName as string, user?.lastName)}
-            </span>{' '}
-            from the game?
-          </div>
-        </BasePopup>
-      )}
+      <BasePopup
+        isShown={showDealerKickPopup}
+        headingText="Kick player"
+        buttonOkText="Kick"
+        buttonCancelText="Cancel"
+        buttonOkProps={{ onClick: kick }}
+        buttonCancelProps={{ onClick: handleCloseKickPopup }}
+      >
+        <div className={styles.kickPopup}>
+          {`Kick ${user.firstName} ${user.lastName} from the game?`}
+        </div>
+        <div className={styles.kickPopupText}>
+          Kick
+          <span className={styles.kickedPlayerName}>
+            {' '}
+            {User.getFullName(user?.firstName as string, user?.lastName)}{' '}
+          </span>
+          from the game?
+        </div>
+      </BasePopup>
+      <BasePopup
+        isShown={showPlayerKickPopup}
+        headingText="Kick player"
+        buttonOkText="Kick"
+        buttonCancelText="Cancel"
+        buttonOkProps={{ onClick: startVotingToKick }}
+        buttonCancelProps={{ onClick: handleCloseKickPopup }}
+      >
+        <div className={styles.kickPopupText}>
+          Vote to kick{' '}
+          <span className={styles.kickedPlayerName}>
+            {User.getFullName(user?.firstName as string, user?.lastName)}
+          </span>{' '}
+          from the game?
+        </div>
+      </BasePopup>
 
       <div
         className={styles.avatarContainer}

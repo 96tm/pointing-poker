@@ -17,7 +17,7 @@ import {
 } from '../../../../redux/types/info-message';
 import { IResponse } from '../../../../shared/services/types';
 import FirstName from '../../connect-to-lobby/components/first-name';
-import ImageLoader from '../../connect-to-lobby/components/image-loader';
+import ImageLoader from '../../connect-to-lobby/components/avatar/image-loader';
 import JobPosition from '../../connect-to-lobby/components/job-position';
 import LastName from '../../connect-to-lobby/components/last-name';
 import styles from './form-create-game.module.scss';

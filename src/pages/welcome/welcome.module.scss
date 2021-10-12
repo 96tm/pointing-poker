@@ -39,10 +39,10 @@ $btn-background: var(--bg-blue);
 
   .label1,
   .label2 {
+    width: 100%;
     color: $label-text;
     font-weight: bold;
     font-size: 2.3em;
-    width: 100%;
   }
 
   .label2 {
@@ -60,17 +60,17 @@ $btn-background: var(--bg-blue);
   }
 
   .btn {
-    background: $btn-background;
     width: 200px;
     margin-top: -0.6%;
+    background: $btn-background;
   }
 
   .warning {
     position: absolute;
     left: 0;
     bottom: -25px;
-    color: red;
     padding-left: 5px;
+    color: red;
     font-size: 12px;
     font-weight: bold;
   }

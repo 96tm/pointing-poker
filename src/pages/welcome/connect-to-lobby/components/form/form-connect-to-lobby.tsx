@@ -2,25 +2,25 @@ import React, { useRef, useState } from 'react';
 import { Container, Form, Row } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { appActions } from '../../../../redux/slices/app/app-slice';
-import { AppDispatch } from '../../../../redux/store';
-import { thunks } from '../../../../redux/thunks/thunks';
+import { appActions } from '../../../../../redux/slices/app/app-slice';
+import { AppDispatch } from '../../../../../redux/store';
+import { thunks } from '../../../../../redux/thunks/thunks';
 import {
   IClientAddPlayerResult,
   TUserRole,
   User,
-} from '../../../../redux/types';
+} from '../../../../../redux/types';
 import {
   InfoMessage,
   TInfoMessageType,
-} from '../../../../redux/types/info-message';
-import FirstName from './first-name';
-import HeadingText from './heading-text';
-import ImageLoader from './image-loader';
-import JobPosition from './job-position';
-import LastName from './last-name';
-import Switcher from './switcher/switcher';
-import styles from '../connect-to-lobby.module.scss';
+} from '../../../../../redux/types/info-message';
+import FirstName from '../first-name';
+import HeadingText from '../heading-text';
+import ImageLoader from '../avatar/image-loader';
+import JobPosition from '../job-position';
+import LastName from '../last-name';
+import Switcher from '../switcher/switcher';
+import styles from '../../connect-to-lobby.module.scss';
 
 interface IFormConnectToLobby {
   gameId: string;
@@ -69,7 +69,6 @@ const FormConnectToLobby = ({
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>();
-
   const image = useRef<HTMLImageElement>(null);
   const [fileName, setFileName] = useState('');
   const [filePath, setFilePath] = useState<string>('');

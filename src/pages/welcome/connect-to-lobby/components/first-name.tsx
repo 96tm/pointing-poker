@@ -1,4 +1,3 @@
-import styles from '../connect-to-lobby.module.scss';
 import React from 'react';
 import {
   Form,
@@ -9,6 +8,7 @@ import {
   FormControlProps,
 } from 'react-bootstrap';
 import { FieldErrors } from 'react-hook-form';
+import styles from '../connect-to-lobby.module.scss';
 
 interface IFirstNameProps {
   reg: FormControlProps;

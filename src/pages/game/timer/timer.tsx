@@ -49,6 +49,8 @@ export default function Timer(): JSX.Element {
       intervalHandle.current = setInterval(() => {
         let minutes = innerTimer.minutes;
         if (innerTimer.seconds === 0) {
+          console.log('seconds zero, minutes: ', innerTimer.minutes);
+
           minutes = Math.max(0, innerTimer.minutes - 1);
         }
         let seconds = Math.max(0, innerTimer.seconds - 1);

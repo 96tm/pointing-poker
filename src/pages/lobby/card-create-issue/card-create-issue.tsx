@@ -165,15 +165,14 @@ function CreateIssueCard(): JSX.Element {
           +
         </span>
       </div>
-      {showPopup && (
-        <CreateIssuePopup
-          handleClose={handleClose}
-          handleSubmit={handleSubmit}
-          info={issueFields}
-          setIssueFields={setIssueFields}
-          warning={warning}
-        />
-      )}
+      <CreateIssuePopup
+        isShown={showPopup}
+        handleClose={handleClose}
+        handleSubmit={handleSubmit}
+        info={issueFields}
+        setIssueFields={setIssueFields}
+        warning={warning}
+      />
     </div>
   );
 }

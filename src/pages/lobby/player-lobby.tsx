@@ -114,26 +114,25 @@ const PlayerLobby = (): JSX.Element => {
           isSideBarShown ? styles.contentWithSidebar : ''
         }`}
       >
-        {showVotingPopup && (
-          <BasePopup
-            headingText="Kick player"
-            buttonOkText="Yes"
-            buttonCancelText="No"
-            buttonOkProps={{ onClick: acceptKickVote }}
-            buttonCancelProps={{ onClick: declineKickVote }}
-          >
-            <div className={styles.dealerKickPopup}>
-              Kick{' '}
-              <span className={styles.nameKickPlayer}>
-                {User.getFullName(
-                  kickPlayer?.firstName as string,
-                  kickPlayer?.lastName
-                )}
-              </span>{' '}
-              from the game?
-            </div>
-          </BasePopup>
-        )}
+        <BasePopup
+          isShown={showVotingPopup}
+          headingText="Kick player"
+          buttonOkText="Yes"
+          buttonCancelText="No"
+          buttonOkProps={{ onClick: acceptKickVote }}
+          buttonCancelProps={{ onClick: declineKickVote }}
+        >
+          <div className={styles.dealerKickPopup}>
+            Kick{' '}
+            <span className={styles.nameKickPlayer}>
+              {User.getFullName(
+                kickPlayer?.firstName as string,
+                kickPlayer?.lastName
+              )}
+            </span>{' '}
+            from the game?
+          </div>
+        </BasePopup>
         <div className={styles.titleSprint}>
           <SprintHeading issues={issues} />
         </div>

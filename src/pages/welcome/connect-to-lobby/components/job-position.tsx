@@ -1,4 +1,3 @@
-import styles from '../connect-to-lobby.module.scss';
 import React from 'react';
 import {
   Form,
@@ -8,15 +7,15 @@ import {
   FormControl,
   FormControlProps,
 } from 'react-bootstrap';
+import styles from '../connect-to-lobby.module.scss';
 
 interface IJobPositionProps {
   reg: FormControlProps;
 }
 
-function JobPosition(
-  props: React.PropsWithChildren<IJobPositionProps>
-): JSX.Element {
-  const { reg } = props;
+function JobPosition({
+  reg,
+}: React.PropsWithChildren<IJobPositionProps>): JSX.Element {
   return (
     <Row>
       <Col lg={7}>

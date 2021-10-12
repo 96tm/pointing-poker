@@ -71,15 +71,14 @@ function CreateIssueCard(): JSX.Element {
       <div className={styles.buttonAddContainer}>
         <ButtonAdd onClick={handleShowPopUp} />
       </div>
-      {showPopup && (
-        <CreateIssuePopup
-          handleClose={handleClose}
-          handleSubmit={handleSubmit}
-          info={issueFields}
-          setIssueFields={setIssueFields}
-          warning={warning}
-        />
-      )}
+      <CreateIssuePopup
+        isShown={showPopup}
+        handleClose={handleClose}
+        handleSubmit={handleSubmit}
+        info={issueFields}
+        setIssueFields={setIssueFields}
+        warning={warning}
+      />
     </div>
   );
 }

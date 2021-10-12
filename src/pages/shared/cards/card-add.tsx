@@ -35,16 +35,15 @@ const CardAdd = (): JSX.Element => {
           +
         </span>
       </div>
-      {showEdit && (
-        <BasePopup
-          buttonCancelProps={{ onClick: handleClose }}
-          buttonOkProps={{ onClick: handleSubmit }}
-          buttonCancelText="No"
-          buttonOkText="Yes"
-        >
-          <PopupAddCard setValues={setValues} cardValues={cardValues} />
-        </BasePopup>
-      )}
+      <BasePopup
+        isShown={showEdit}
+        buttonCancelProps={{ onClick: handleClose }}
+        buttonOkProps={{ onClick: handleSubmit }}
+        buttonCancelText="No"
+        buttonOkText="Yes"
+      >
+        <PopupAddCard setValues={setValues} cardValues={cardValues} />
+      </BasePopup>
     </>
   );
 };

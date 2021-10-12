@@ -3,6 +3,7 @@ $font: var(--second-font);
 $page-width: var(--page-width);
 $page-width-sidebar: var(--page-width-sidebar);
 $button-width: 189px;
+$shadow: var(--main-shadow);
 
 .container {
   display: flex;
@@ -12,8 +13,8 @@ $button-width: 189px;
 .content {
   width: 70%;
   max-width: $page-width;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   padding: 2% 3% 0;
+  box-shadow: $shadow;
 }
 .contentWithSidebar {
   max-width: $page-width-sidebar;
@@ -30,7 +31,7 @@ $button-width: 189px;
   background: white;
   color: $btn-background;
   border: 1px solid $btn-background;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  text-shadow: $shadow;
 }
 
 .dealerKickPopup {

@@ -106,21 +106,20 @@ const IssueCard = ({ infoIssue }: IPropsIssue): JSX.Element => {
       </div>
       <div className={styles.priority}>Priority {infoIssue.priority}</div>
 
-      {showEdit && (
-        <BasePopup
-          buttonCancelProps={{ onClick: handleClose }}
-          buttonOkProps={{ onClick: handleSubmit }}
-          buttonCancelText="No"
-          buttonOkText="Yes"
-          contentProps={{ className: `${styles.warning}` }}
-        >
-          <PopupChangeIssue
-            info={issueFields}
-            setIssueFields={setIssueFields}
-            warning={warning}
-          />
-        </BasePopup>
-      )}
+      <BasePopup
+        isShown={showEdit}
+        buttonCancelProps={{ onClick: handleClose }}
+        buttonOkProps={{ onClick: handleSubmit }}
+        buttonCancelText="No"
+        buttonOkText="Yes"
+        contentProps={{ className: `${styles.warning}` }}
+      >
+        <PopupChangeIssue
+          info={issueFields}
+          setIssueFields={setIssueFields}
+          warning={warning}
+        />
+      </BasePopup>
       {(isWithinIssueCard || isWithinIssueCardInfo) && (
         <div
           className={styles.infoPopup}

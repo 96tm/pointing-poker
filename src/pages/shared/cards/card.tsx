@@ -108,25 +108,24 @@ export default function PlayCard({
         </div>
       </section>
 
-      {showEdit && (
-        <BasePopup
-          buttonCancelProps={{
-            onClick: handleDelete,
-            className: `${styles.btnDelete}`,
-          }}
-          buttonOkProps={{ onClick: handleSubmit }}
-          buttonCancelText="Delete"
-          buttonOkText="Add"
-        >
-          <img
-            src={close}
-            alt="close popup"
-            className={styles.iconClose}
-            onClick={handleClose}
-          />
-          <PopupChangeCard setValue={setValue} cardValues={cardValues} />
-        </BasePopup>
-      )}
+      <BasePopup
+        isShown={showEdit}
+        buttonCancelProps={{
+          onClick: handleDelete,
+          className: `${styles.btnDelete}`,
+        }}
+        buttonOkProps={{ onClick: handleSubmit }}
+        buttonCancelText="Delete"
+        buttonOkText="Add"
+      >
+        <img
+          src={close}
+          alt="close popup"
+          className={styles.iconClose}
+          onClick={handleClose}
+        />
+        <PopupChangeCard setValue={setValue} cardValues={cardValues} />
+      </BasePopup>
     </>
   );
 }
