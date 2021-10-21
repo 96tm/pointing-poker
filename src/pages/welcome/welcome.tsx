@@ -1,6 +1,5 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { gameSelectors } from '../../redux/selectors';
 import { appActions } from '../../redux/slices/app/app-slice';
@@ -8,17 +7,18 @@ import { AppDispatch } from '../../redux/store';
 import { thunks } from '../../redux/thunks/thunks';
 import { TGameStatus } from '../../redux/types';
 import { InfoMessage, TInfoMessageType } from '../../redux/types/info-message';
+import logoGame from '../../shared/assets/icons/logo.svg';
 import { APP_CONSTANTS } from '../../shared/constants';
 import { ICheckGameResponse, IResponse } from '../../shared/services/types';
 import ConnectToLobby from './connect-to-lobby/connect-to-lobby';
 import CreateGame from './create-game/create-game';
-import logoGame from '../../shared/assets/icons/logo.svg';
+import WelcomeForm from './welcome-form/welcome-form';
 import styles from './welcome.module.scss';
 
 const WelcomePage = (): JSX.Element => {
   const [url, setUrl] = useState('');
   const [gameId, setGameId] = useState('');
-  const [isLobbyConnect, setLobbyConnect] = useState(false);
+  const [isLobbyConnectShown, setIsLobbyConnectShown] = useState(false);
   const [isNewGameShown, setIsNewGameShown] = useState(false);
   const gameStatus = useSelector(gameSelectors.selectStatus);
   const history = useHistory();
@@ -70,14 +70,15 @@ const WelcomePage = (): JSX.Element => {
           appActions.addOneInfoMessage(
             new InfoMessage(
               `Can't connect to server`,
-              TInfoMessageType.error
+              TInfoMessageType.error,
+              false
             ).toObject()
           )
         );
         return;
       }
       const { gameExists } = payload;
-      setLobbyConnect(gameExists);
+      setIsLobbyConnectShown(gameExists);
       if (!gameExists) {
         dispatch(
           appActions.addOneInfoMessage(
@@ -110,53 +111,23 @@ const WelcomePage = (): JSX.Element => {
     <div className={styles.container}>
       <div className={styles.content}>
         <ConnectToLobby
-          isShown={isLobbyConnect}
+          isShown={isLobbyConnectShown}
           gameId={gameId}
-          handleCancelClick={() => setLobbyConnect(false)}
+          handleCancelClick={() => setIsLobbyConnectShown(false)}
         />
-        {/* {isNewGame && ( */}
         <CreateGame
           isShown={isNewGameShown}
           handleCancelClick={() => setIsNewGameShown(false)}
         />
-        {/* )} */}
         <div className={styles.wrapperLogo}>
           <img src={logoGame} className={styles.logo} alt="logo game"></img>
         </div>
-        <Form className={styles.rootForm}>
-          <Form.Group>
-            <Form.Label className={styles.label1}>
-              Start your planning:
-            </Form.Label>
-            <div className={styles.wrapperBtnStart}>
-              <Button
-                type="button"
-                className={styles.btn}
-                onClick={handleClickNewGame}
-              >
-                Start new game
-              </Button>
-            </div>
-          </Form.Group>
-          <Form.Group className={styles.connection}>
-            <Form.Label className={styles.label2}>OR:</Form.Label>
-            <Form.Control
-              type="url"
-              placeholder="Connect to lobby by URL:"
-              value={url}
-              className={styles.input}
-              onChange={handleChange}
-            />
-            <Button
-              type="button"
-              className={styles.btn}
-              onClick={handleClickConnect}
-              data-testid="btn"
-            >
-              Connect
-            </Button>
-          </Form.Group>
-        </Form>
+        <WelcomeForm
+          handleClickNewGame={handleClickNewGame}
+          handleClickConnect={handleClickConnect}
+          handleChange={handleChange}
+          url={url}
+        />
       </div>
     </div>
   );

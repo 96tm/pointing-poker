@@ -18,19 +18,19 @@ import {
   IUser,
   TGameStatus,
   TUserRole,
-  User,
 } from '../../redux/types';
 import { InfoMessage, TInfoMessageType } from '../../redux/types/info-message';
-import { BasePopup } from '../shared/base-popup/base-popup';
+import { gameService } from '../../shared/services/game-service/game-service';
 import Deck from '../shared/cards/deck';
 import DealerSection from '../shared/dealer-section/dealer-section';
 import SideBar from '../shared/side-bar/side-bar';
 import SprintHeading from '../shared/sprint-heading/sprint-heading';
+import EntryRequestPopup from './entry-request-popup/entry-request-popup';
 import GameControls from './game-controls/game-controls';
 import IssuesList from './issues-list/issues-list';
 import IssueStatistics from './statistics/issue-statistics';
+import VotingPopup from './voting-popup/voting-popup';
 import styles from './game-page.module.scss';
-import { gameService } from '../../shared/services/game-service/game-service';
 
 export function GamePage(): JSX.Element {
   const history = useHistory();
@@ -49,7 +49,7 @@ export function GamePage(): JSX.Element {
   const entryRequest = useSelector(entryRequestSelectors.selectFirstRequest);
   const [showRoundResult, setShowRoundResult] = useState(false);
   const votingKick = useSelector(votingKickSelectors.selectVotingKick);
-  const [showVotingPopup, setShowVotingPopup] = useState(false);
+  const [isVotingPopupShown, setIsVotingPopupShown] = useState(false);
 
   useEffect(() => {
     if (firstRender.current) {
@@ -98,7 +98,7 @@ export function GamePage(): JSX.Element {
 
   useEffect(() => {
     if (votingKick.kickedPlayerId) {
-      setShowVotingPopup(true);
+      setIsVotingPopupShown(true);
     }
   }, [votingKick.kickedPlayerId]);
 
@@ -111,7 +111,7 @@ export function GamePage(): JSX.Element {
         accept: false,
       })
     );
-    setShowVotingPopup(false);
+    setIsVotingPopupShown(false);
     const payload = response.payload as Partial<IRequestResult>;
     if (payload.message) {
       dispatch(
@@ -132,7 +132,7 @@ export function GamePage(): JSX.Element {
         accept: true,
       })
     );
-    setShowVotingPopup(false);
+    setIsVotingPopupShown(false);
     const payload = response.payload as Partial<IRequestResult>;
     if (payload.message) {
       dispatch(
@@ -174,42 +174,19 @@ export function GamePage(): JSX.Element {
 
   return (
     <div className={styles.container}>
-      <BasePopup
-        isShown={showVotingPopup}
-        headingText="Kick player"
-        buttonOkText="Yes"
-        buttonCancelText="No"
+      <VotingPopup
+        isShown={isVotingPopupShown}
         buttonOkProps={{ onClick: acceptKickVote }}
         buttonCancelProps={{ onClick: declineKickVote }}
-      >
-        <div className={styles.dealerKickPopup}>
-          Kick
-          <span className={styles.nameKickPlayer}>
-            {User.getFullName(
-              entryRequest.firstName as string,
-              entryRequest.lastName
-            )}
-          </span>
-          from the game?
-        </div>
-      </BasePopup>
+        votingKick={votingKick}
+      />
 
-      <BasePopup
-        isShown={Boolean(entryRequest)}
-        buttonOkText="Admit"
-        buttonCancelText="Reject"
-        buttonCancelProps={{
-          onClick: rejectEntryRequest,
-        }}
-        buttonOkProps={{
-          onClick: admitEntryRequest,
-        }}
-      >
-        {`Admit ${User.getFullName(
-          entryRequest.firstName as string,
-          entryRequest.lastName
-        )}?`}
-      </BasePopup>
+      <EntryRequestPopup
+        entryRequest={entryRequest}
+        buttonOkProps={{ onClick: admitEntryRequest }}
+        buttonCancelProps={{ onClick: rejectEntryRequest }}
+      />
+
       {gameStatus !== TGameStatus.inactive && (
         <div
           className={`${styles.content} ${

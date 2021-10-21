@@ -29,7 +29,7 @@ $bg-overlay: var(--bg-overlay);
   opacity: 1;
   visibility: visible;
   transform: scale(1);
-  transition: opacity 400ms ease-in, visibility 400ms, transform 400ms;
+  transition: opacity 600ms ease-in, visibility 600ms, transform 600ms;
 }
 
 .modalEnterDone {
@@ -87,7 +87,7 @@ $bg-overlay: var(--bg-overlay);
   width: 60%;
   max-width: 876px;
   padding: 36px 40px 33px;
-  background: #fff;
+  background: #ffffff;
   box-shadow: $shadow;
 }
 

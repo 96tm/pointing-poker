@@ -16,7 +16,7 @@ interface IInfoMessageProps {
 
 export default function InfoMessage({
   message,
-  autoClose = true,
+  autoClose = message.autoClose,
 }: IInfoMessageProps): JSX.Element {
   const messageStyle =
     message.type === TInfoMessageType.error

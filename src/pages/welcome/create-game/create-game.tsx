@@ -4,6 +4,7 @@ import FormCreateGame from './form-create-game/form-create-game';
 
 interface ICreateGameProps {
   isShown: boolean;
+  isMounted?: boolean;
   handleCancelClick: () => void;
 }
 

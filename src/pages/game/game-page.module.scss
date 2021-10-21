@@ -2,9 +2,6 @@ $page-width: var(--page-width);
 $page-width-sidebar: var(--page-width-sidebar);
 $shadow: var(--main-shadow);
 
-.heading {
-  padding: 40px 0 45px;
-}
 .container {
   display: flex;
   justify-content: center;
@@ -22,16 +19,13 @@ $shadow: var(--main-shadow);
     column-gap: 30px;
   }
 }
+
 .contentWithSidebar {
   max-width: $page-width-sidebar;
 }
 
-.dealerKickPopup {
-  margin: 0 auto;
-}
-.nameKickPlayer {
-  color: #66999b;
-  font-weight: 500;
+.heading {
+  padding: 40px 0 45px;
 }
 
 .controls {

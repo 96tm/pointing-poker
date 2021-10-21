@@ -1,12 +1,21 @@
 import styles from './base-button.module.scss';
-import React, { ButtonHTMLAttributes } from 'react';
+import React, {
+  ButtonHTMLAttributes,
+  forwardRef,
+  MutableRefObject,
+} from 'react';
 import Button from 'react-bootstrap/Button';
 
-export function BaseButton(
-  props: ButtonHTMLAttributes<HTMLButtonElement>
+export const BaseButton = forwardRef(function baseButton(
+  props: ButtonHTMLAttributes<HTMLButtonElement>,
+  ref:
+    | MutableRefObject<HTMLButtonElement | null>
+    | ((instance: HTMLButtonElement | null) => void)
+    | null
 ): JSX.Element {
   return (
     <Button
+      ref={ref}
       {...{
         ...props,
         className: `${props.className || ''} ${styles.baseButton}`,
@@ -15,4 +24,4 @@ export function BaseButton(
       {props.children}
     </Button>
   );
-}
+});

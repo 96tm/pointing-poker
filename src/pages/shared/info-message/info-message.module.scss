@@ -10,6 +10,7 @@ $text-dark: rgba(79, 79, 79, 1);
 .messageContainer {
   position: relative;
   z-index: $max-z-index;
+  animation: message-appear 0.6s ease-out 1;
 }
 .message {
   position: relative;
@@ -63,4 +64,13 @@ $text-dark: rgba(79, 79, 79, 1);
 }
 .buttonClose::after {
   transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+@keyframes message-appear {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: initial;
+  }
 }

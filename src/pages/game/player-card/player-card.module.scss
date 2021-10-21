@@ -78,7 +78,7 @@ $bg-blue: var(--bg-blue);
   white-space: nowrap;
   font-weight: 300;
   line-height: 1em;
-  color: #000;
+  color: #000000;
 }
 .jobPosition {
   font-size: 0.38em;
@@ -88,7 +88,7 @@ $bg-blue: var(--bg-blue);
 }
 .currentUser {
   margin-bottom: 0;
-  color: #000;
+  color: #000000;
   text-transform: uppercase;
   font-family: $main-font;
   font-size: 0.44em;
@@ -108,7 +108,7 @@ $bg-blue: var(--bg-blue);
   top: 0;
   align-items: center;
   z-index: 5;
-  background-color: #fff;
+  background-color: #ffffff;
   box-shadow: $shadow;
   color: #808080;
   width: 300px;

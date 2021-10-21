@@ -39,7 +39,6 @@ const DealerLobby = (): JSX.Element => {
   const gameSettings = useSelector(gameSettingsSelectors.selectSettings);
   const gameId = useSelector(gameSelectors.selectGame).id;
   const gameStatus = useSelector(gameSelectors.selectStatus);
-
   const [gameURL] = useState(`${APP_CONSTANTS.URL}/lobby/${gameId}`);
 
   useEffect(() => {

@@ -71,7 +71,7 @@ const FormConnectToLobby = ({
   } = useForm<FormData>();
   const image = useRef<HTMLImageElement>(null);
   const [fileName, setFileName] = useState('');
-  const [filePath, setFilePath] = useState<string>('');
+  const [filePath, setFilePath] = useState('');
   const [playerName, setPlayerName] = useState('NN');
 
   const onConfirmClick = handleSubmit(async (data) => {

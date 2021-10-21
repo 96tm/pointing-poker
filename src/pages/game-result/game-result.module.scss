@@ -2,18 +2,6 @@ $font: var(--second-font);
 $shadow: var(--main-shadow);
 $page-width: var(--page-width);
 
-.customIssueCard {
-  width: 300px;
-}
-
-.buttonDownload {
-  margin-left: 5px;
-}
-
-.buttonRestart {
-  margin-left: auto;
-}
-
 .container {
   display: flex;
   justify-content: center;
@@ -25,6 +13,18 @@ $page-width: var(--page-width);
   max-width: $page-width;
   padding: 0 38px 31px 38px;
   box-shadow: $shadow;
+}
+
+.customIssueCard {
+  width: 300px;
+}
+
+.buttonDownload {
+  margin-left: 5px;
+}
+
+.buttonRestart {
+  margin-left: auto;
 }
 
 .headingContainer {

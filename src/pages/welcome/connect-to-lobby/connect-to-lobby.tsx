@@ -8,11 +8,11 @@ interface IConnectToLobbyProps {
   handleCancelClick: () => void;
 }
 
-const ConnectToLobby = ({
+function ConnectToLobby({
   handleCancelClick,
   gameId,
   isShown,
-}: IConnectToLobbyProps): JSX.Element => {
+}: IConnectToLobbyProps): JSX.Element {
   return (
     <BasePopup
       isShown={isShown}
@@ -30,6 +30,6 @@ const ConnectToLobby = ({
       />
     </BasePopup>
   );
-};
+}
 
 export default ConnectToLobby;

@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { SetStateAction, useRef } from 'react';
 import { Form, FormControl, InputGroup } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { appActions } from '../../../../../../redux/slices/app/app-slice';
@@ -8,8 +8,8 @@ import styles from './file-input.module.scss';
 
 interface IFileInputProps {
   fileName: string;
-  setFileName: (state: string) => void;
-  setFilePath: (state: string) => void;
+  setFileName: React.Dispatch<SetStateAction<string>>;
+  setFilePath: React.Dispatch<SetStateAction<string>>;
 }
 
 function FileInput({
@@ -19,7 +19,6 @@ function FileInput({
 }: React.PropsWithChildren<IFileInputProps>): JSX.Element {
   const dispatch = useDispatch();
   const fileInput = useRef<HTMLInputElement>(null);
-  console.log('filename', fileName);
 
   const handleChange = () => {
     if (fileInput.current?.files?.length) {
@@ -27,13 +26,8 @@ function FileInput({
         fileInput.current.files[0].size / 1024 / 1024 <
         APP_CONSTANTS.MAX_AVATAR_SIZE
       ) {
-        console.log(fileInput.current.files[0].size / 1024 / 1024);
         setFileName(fileInput.current.files[0].name);
         setFilePath(globalThis.URL.createObjectURL(fileInput.current.files[0]));
-        console.log(
-          fileInput.current.files[0].name,
-          globalThis.URL.createObjectURL(fileInput.current.files[0])
-        );
       } else {
         dispatch(
           appActions.addOneInfoMessage(
@@ -60,7 +54,7 @@ function FileInput({
           aria-describedby="basic-addon2"
           readOnly={true}
         />
-        <FormControl
+        <input
           ref={fileInput}
           id={styles.picker}
           type="file"
