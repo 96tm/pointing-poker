@@ -1,0 +1,95 @@
+$font: var(--second-font);
+$shadow: var(--second-shadow);
+
+.cardCreateIssue {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 300px;
+  height: 100%;
+  padding: 18px 24px 18px 18px;
+  font-style: var(--second-font);
+  color: gray;
+  box-shadow: $shadow;
+}
+
+.buttonsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 30%;
+  font-size: 1.8em;
+}
+.addIssueButton {
+  transform: scale(1.5);
+  font-size: 1.6em;
+  line-height: 27px;
+  cursor: pointer;
+  &:hover {
+    transform: scale(2);
+  }
+}
+
+.uploadIcon:hover {
+  transform: scale(1.2);
+  cursor: pointer;
+}
+.uploadIcon {
+  width: 30px;
+}
+
+.visuallyHidden {
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+
+.name {
+  position: relative;
+  width: 70%;
+  z-index: 1;
+  margin-bottom: 0;
+  font-size: 1em;
+  text-align: start;
+  overflow-x: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 1050px) {
+  .name {
+    font-size: 0.9em;
+  }
+  .addIssueButton {
+    font-size: 1.45em;
+  }
+}
+
+@media (max-width: 950px) {
+  .name {
+    font-size: 0.8em;
+  }
+}
+
+@media (max-width: 820px) {
+  .cardCreateIssue {
+    width: 200px;
+  }
+  .addIssueButton {
+    font-size: 1.4em;
+    line-height: 24px;
+  }
+  .name {
+    font-size: 0.75em;
+  }
+}
+@media (max-width: 720px) {
+  .uploadIcon {
+    width: 20px;
+  }
+  .addIssueButton {
+    font-size: 1.4em;
+    line-height: 22px;
+  }
+}

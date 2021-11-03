@@ -10,7 +10,7 @@ const changeTimer: CaseReducer<IGamePage, PayloadAction<ITimer>> = (
 };
 
 const toggleSideBar: CaseReducer<IGamePage, AnyAction> = (state) => {
-  state.isSideBarShown = !state.isSideBarShown;
+  state.isSidebarShown = !state.isSidebarShown;
 };
 
 export const gamePageReducers = {

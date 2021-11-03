@@ -14,20 +14,19 @@ import {
   InfoMessage,
   TInfoMessageType,
 } from '../../../redux/types/info-message';
-import PlayCard from './card';
-import CardAdd from './card-add';
+import PlayCard from './card/card';
+import CardAdd from './card-add/card-add';
 import styles from './deck.module.scss';
 
-function Deck(): JSX.Element {
+export default function Deck(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
+  const [selectedCard, setSelectedCard] = useState<TCardScore>(-1);
+  const gameSettings = useSelector(gameSettingsSelectors.selectSettings);
   const { cardValues } = useSelector(gameSettingsSelectors.selectSettings);
   const gameId = useSelector(gameSelectors.selectId);
   const currentIssueId = useSelector(gameSelectors.selectCurrentIssueId);
   const currentUser = useSelector(currentUserSelectors.selectCurrentUser);
-  const currentDeck = cardValues;
-  const [selectedCard, setSelectedCard] = useState<TCardScore>(-1);
   const gameStatus = useSelector(gameSelectors.selectStatus);
-  const gameSettings = useSelector(gameSettingsSelectors.selectSettings);
 
   async function handleClick(cardValue: TCardScore) {
     if (
@@ -58,7 +57,7 @@ function Deck(): JSX.Element {
   return (
     <>
       <div className={styles.deck}>
-        {currentDeck.map((cardValue, i) =>
+        {cardValues.map((cardValue, i) =>
           i === 0 ? (
             <PlayCard
               key={cardValue}
@@ -77,10 +76,8 @@ function Deck(): JSX.Element {
             />
           )
         )}
-        {gameStatus === 'lobby' && <CardAdd />}
+        {gameStatus === TGameStatus.lobby && <CardAdd />}
       </div>
     </>
   );
 }
-
-export default Deck;

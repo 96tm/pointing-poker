@@ -1,18 +1,7 @@
 $font: var(--second-font);
 $bg: var(--bg-blue);
-
-.picker {
-  width: 40%;
-  margin: 0;
-  padding-top: 5px;
-  font: normal bold 24px/30px $font;
-  text-align: center;
-  color: #ffffff;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  background: $bg;
-  border: 1px solid #496a81;
-  border-radius: 0px 3px 3px 0px;
-}
+$border-color: var(--border-button-blue);
+$shadow: var(--main-shadow);
 
 .fieldWrapper {
   position: relative;
@@ -21,8 +10,30 @@ $bg: var(--bg-blue);
   text-align: center;
 }
 
+.fieldWrapper {
+  .picker {
+    width: 40%;
+    margin: 0;
+    padding-top: 5px;
+    font: normal bold 24px/30px $font;
+    text-align: center;
+    color: #ffffff;
+    text-shadow: $shadow;
+    background: $bg;
+    border: 1px solid $border-color;
+    border-radius: 0px 3px 3px 0px;
+    cursor: pointer;
+    &:hover {
+      color: #ffffff;
+      background-color: #0b5ed7;
+      border-color: #0a58ca;
+    }
+  }
+}
+
 .fileField {
   position: absolute;
+  width: 100%;
   visibility: hidden;
   opacity: 0;
 }
@@ -41,4 +52,22 @@ $bg: var(--bg-blue);
   text-align: start;
   font: normal bold 24px/28px $font;
   color: #000000;
+}
+
+@media (max-width: 400px) {
+  .fieldWrapper {
+    .picker {
+      width: 100%;
+      margin: 0 !important;
+      border-top-left-radius: initial;
+      border-top-right-radius: initial;
+      border-bottom-left-radius: 5px !important;
+    }
+    .placeholder {
+      width: 100%;
+      border-top-right-radius: 5px !important;
+      border-bottom-left-radius: initial;
+      border-bottom-right-radius: initial;
+    }
+  }
 }

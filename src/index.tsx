@@ -8,7 +8,6 @@ import { gameService } from './shared/services/game-service/game-service';
 import * as serviceWorker from './shared/serviceWorker';
 import { BrowserRouter as Router } from 'react-router-dom';
 import './shared/assets/css/base.scss';
-import './index.scss';
 
 gameService.init();
 

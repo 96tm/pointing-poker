@@ -174,8 +174,6 @@ export interface IUpdateIssueResponse extends IResponse {
   issueId: string;
 }
 
-// export interface IDeleteIssueResponse extends IResponse {}
-
 export interface ILeaveGameResponse extends IResponse {
   gameId: string;
 }

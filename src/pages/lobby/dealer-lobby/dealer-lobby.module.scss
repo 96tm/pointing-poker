@@ -4,7 +4,6 @@ $page-width: var(--page-width);
 $page-width-sidebar: var(--page-width-sidebar);
 $button-width: 189px;
 $shadow: var(--main-shadow);
-
 .container {
   display: flex;
   justify-content: center;
@@ -32,7 +31,6 @@ $shadow: var(--main-shadow);
   cursor: pointer;
 }
 
-.titleIssues,
 .titleSettings {
   color: black;
   margin: 2% 0;
@@ -73,34 +71,14 @@ $shadow: var(--main-shadow);
   text-shadow: $shadow;
 }
 
-.titleLinkTo {
-  font: normal italic 17px $font;
-  margin-bottom: 1px;
-}
-
-.containerLinkToLobby {
-  text-align: start;
-}
-.wrapperIssue {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  font-size: 17px;
-}
-.card {
-  position: relative;
-  display: flex;
-  color: gray;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 300px;
-  box-shadow: $shadow;
-  padding: 1.5% 1% 0.5%;
-  font-style: var(--second-font);
-  margin-bottom: 2%;
-}
 .containerSettings {
   padding: 2% 0;
+}
+
+@media (max-width: 1000px) {
+  .content {
+    width: 90%;
+  }
 }
 
 @media (max-width: 946px) {
@@ -108,7 +86,6 @@ $shadow: var(--main-shadow);
     font-size: 16px;
   }
   .titleLinkTo,
-  .titleIssues,
   .titleSettings {
     font-size: 17px;
   }
@@ -118,14 +95,15 @@ $shadow: var(--main-shadow);
   .btnGameContainer {
     flex-direction: column;
   }
-  .card {
-    width: 200px;
-  }
 }
 
+@media (max-width: 640px) {
+  .content {
+    padding: 0 10px 31px 10px;
+  }
+}
 @media (max-width: 530px) {
   .containerLinkToLobby,
-  .wrapperIssue,
   .settingsList {
     width: 80%;
     text-align: start;
@@ -137,14 +115,8 @@ $shadow: var(--main-shadow);
   }
 }
 
-@media (max-width: 1000px) {
-  .content {
-    width: 90%;
-  }
-}
-
-@media (max-width: 640px) {
-  .content {
-    padding: 0 10px 31px 10px;
+@media (max-width: 499px) {
+  .contentWithSidebar {
+    display: none;
   }
 }

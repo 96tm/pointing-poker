@@ -4,6 +4,10 @@ $shadow: var(--main-shadow);
 $font: var(--main-font);
 $bg-overlay: var(--bg-overlay);
 
+.transition {
+  position: absolute;
+}
+
 .modal {
   position: fixed;
   top: 0;
@@ -48,7 +52,6 @@ $bg-overlay: var(--bg-overlay);
   opacity: 0;
   visibility: hidden;
   transform: scale(0);
-
   transition: opacity 400ms ease-out, visibility 400ms, transform 400ms ease-out;
 }
 

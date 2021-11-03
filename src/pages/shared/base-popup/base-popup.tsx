@@ -9,7 +9,7 @@ import { BaseButton as BaseButton } from '../buttons/base-button/base-button';
 import { ButtonBlue } from '../buttons/button-blue/button-blue';
 import styles from './base-popup.module.scss';
 
-interface IBasePopupProps {
+export interface IBasePopupProps {
   isShown: boolean;
   buttonOkProps?: ButtonHTMLAttributes<HTMLButtonElement>;
   buttonCancelProps?: ButtonHTMLAttributes<HTMLButtonElement>;
@@ -53,7 +53,7 @@ export function BasePopup({
   }, []);
 
   return (
-    <TransitionGroup>
+    <TransitionGroup className={styles.transition}>
       {isShown && (
         <CSSTransition
           timeout={600}

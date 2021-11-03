@@ -1,6 +1,5 @@
 import { TCardScore } from '.';
-import { deck } from '../../pages/shared/cards/constants';
-
+import { DECKS } from '../../pages/shared/cards/constants';
 import { TCardType } from './card';
 
 export interface ITimer {
@@ -27,7 +26,7 @@ export class GameSettings {
   autoAdmit = false;
   autoFlipCards = false;
   canScoreAfterFlip = false;
-  cardValues = deck.fib.slice(0, 5);
+  cardValues = DECKS.fib.slice(0, 5);
   cardType = TCardType.fib;
   showTimer = false;
 

@@ -16,7 +16,7 @@ import WelcomeForm from './welcome-form/welcome-form';
 import styles from './welcome.module.scss';
 
 const WelcomePage = (): JSX.Element => {
-  const [url, setUrl] = useState('');
+  const [gameURL, setGameURL] = useState('');
   const [gameId, setGameId] = useState('');
   const [isLobbyConnectShown, setIsLobbyConnectShown] = useState(false);
   const [isNewGameShown, setIsNewGameShown] = useState(false);
@@ -35,17 +35,20 @@ const WelcomePage = (): JSX.Element => {
   }, [gameStatus]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setUrl(e.target.value);
+    setGameURL(e.target.value);
   };
 
-  const testUrl = (urlToTest: string): boolean => {
-    const urlQuery = new RegExp(APP_CONSTANTS.URL_REGEXP);
-    const gameUrlQuery = new RegExp(APP_CONSTANTS.GAME_URL_REGEXP);
-    const test = urlQuery.test(urlToTest) && gameUrlQuery.test(urlToTest);
+  const testUrl = (url: string): boolean => {
+    const URLQuery = new RegExp(APP_CONSTANTS.URL_REGEXP);
+    const gameURLQuery = new RegExp(APP_CONSTANTS.GAME_URL_REGEXP);
+    const test = URLQuery.test(url) && gameURLQuery.test(url);
     if (!test) {
       dispatch(
         appActions.addOneInfoMessage(
-          new InfoMessage(`Incorrect url!`, TInfoMessageType.error).toObject()
+          new InfoMessage(
+            `Incorrect gameURL!`,
+            TInfoMessageType.error
+          ).toObject()
         )
       );
       return false;
@@ -58,9 +61,9 @@ const WelcomePage = (): JSX.Element => {
   };
 
   const handleClickConnect = async () => {
-    const isUrlValid = testUrl(url);
+    const isUrlValid = testUrl(gameURL);
     if (isUrlValid) {
-      const gameIdLocal = url.split('/').slice(-1)[0];
+      const gameIdLocal = gameURL.split('/').slice(-1)[0];
       const response = await dispatch(
         thunks.checkGameThunk({ gameId: gameIdLocal })
       );
@@ -126,7 +129,7 @@ const WelcomePage = (): JSX.Element => {
           handleClickNewGame={handleClickNewGame}
           handleClickConnect={handleClickConnect}
           handleChange={handleChange}
-          url={url}
+          gameURL={gameURL}
         />
       </div>
     </div>

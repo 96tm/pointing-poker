@@ -3,7 +3,7 @@ import { Col, Row } from 'react-bootstrap';
 import Avatar from './avatar-image/avatar-image';
 import FileInput from './file-input/file-input';
 
-interface IInputFileProps {
+interface IImageLoaderProps {
   fileName: string;
   filePath: string;
   playerName: string;
@@ -12,14 +12,14 @@ interface IInputFileProps {
   setFilePath: React.Dispatch<SetStateAction<string>>;
 }
 
-function ImageLoader({
+export default function ImageLoader({
   fileName,
   filePath,
   playerName,
   image,
   setFileName,
   setFilePath,
-}: React.PropsWithChildren<IInputFileProps>): JSX.Element {
+}: React.PropsWithChildren<IImageLoaderProps>): JSX.Element {
   return (
     <Row>
       <Col lg={7}>
@@ -30,9 +30,6 @@ function ImageLoader({
         />
         <Avatar image={image} filePath={filePath} playerName={playerName} />
       </Col>
-      <Col lg={2}></Col>
     </Row>
   );
 }
-
-export default ImageLoader;

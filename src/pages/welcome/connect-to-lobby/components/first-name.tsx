@@ -16,7 +16,7 @@ interface IFirstNameProps {
   handleChangeInput: () => void;
 }
 
-function FirstName({
+export default function FirstName({
   reg,
   errors,
   handleChangeInput,
@@ -53,5 +53,3 @@ function FirstName({
     </Row>
   );
 }
-
-export default FirstName;

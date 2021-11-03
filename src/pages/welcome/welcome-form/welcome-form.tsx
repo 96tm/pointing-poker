@@ -7,14 +7,14 @@ interface IWelcomeFormProps {
   handleClickNewGame(): void;
   handleClickConnect(): void;
   handleChange(event: ChangeEvent<HTMLInputElement>): void;
-  url: string;
+  gameURL: string;
 }
 
 export default function WelcomeForm({
   handleClickNewGame,
   handleClickConnect,
   handleChange,
-  url,
+  gameURL,
 }: IWelcomeFormProps): JSX.Element {
   return (
     <Form className={styles.form}>
@@ -35,9 +35,9 @@ export default function WelcomeForm({
       <Form.Group className={styles.connection}>
         <Form.Label className={styles.labelConnect}>OR:</Form.Label>
         <Form.Control
-          type="url"
+          type="gameURL"
           placeholder="Connect to lobby by URL:"
-          value={url}
+          value={gameURL}
           className={styles.input}
           onChange={handleChange}
         />

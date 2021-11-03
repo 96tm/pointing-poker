@@ -15,11 +15,11 @@ import {
   TInfoMessageType,
 } from '../../../../../redux/types/info-message';
 import FirstName from '../first-name';
-import HeadingText from '../heading-text';
+import HeadingText from '../heading';
 import ImageLoader from '../avatar/image-loader';
 import JobPosition from '../job-position';
 import LastName from '../last-name';
-import Switcher from '../switcher/switcher';
+import Switcher from '../observer-switcher/observer-switcher';
 import styles from '../../connect-to-lobby.module.scss';
 
 interface IFormConnectToLobby {

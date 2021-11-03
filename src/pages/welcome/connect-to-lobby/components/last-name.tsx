@@ -14,7 +14,7 @@ interface ILastNameProps {
   handleChangeInput: () => void;
 }
 
-function LastName({
+export default function LastName({
   reg,
   handleChangeInput,
 }: React.PropsWithChildren<ILastNameProps>): JSX.Element {
@@ -32,5 +32,3 @@ function LastName({
     </Row>
   );
 }
-
-export default LastName;

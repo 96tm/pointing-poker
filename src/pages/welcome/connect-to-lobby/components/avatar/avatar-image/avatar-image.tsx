@@ -7,7 +7,7 @@ interface IAvatarProps {
   playerName: string;
 }
 
-function Avatar({
+export default function Avatar({
   image,
   filePath,
   playerName,
@@ -29,5 +29,3 @@ function Avatar({
     </div>
   );
 }
-
-export default Avatar;

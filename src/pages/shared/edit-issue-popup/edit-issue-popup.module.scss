@@ -1,0 +1,68 @@
+$bg-blue: var(--bg-blue);
+$shadow: var(--main-shadow);
+
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: 0 auto;
+  color: #000000;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.popupTitle {
+  font-size: 1.4em;
+  padding-bottom: 5%;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  width: 80%;
+  margin: 0 auto;
+  font-size: 0.8em;
+}
+
+.urlInput,
+.titleInput {
+  font-size: 0.9em;
+  width: 70%;
+  border: 1px solid $bg-blue;
+  box-shadow: inset $shadow;
+  border-radius: 0px;
+}
+
+.prioritySelect {
+  width: 40%;
+}
+
+.warning {
+  position: absolute;
+  left: 10%;
+  top: 95%;
+  color: #ff0000;
+  font-size: 0.6em;
+}
+
+@media (max-width: 765px) {
+  .container {
+    width: 100%;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 520px) {
+  .container {
+    text-align: center;
+  }
+  .prioritySelect {
+    width: 50%;
+  }
+}

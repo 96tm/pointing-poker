@@ -31,7 +31,7 @@ function FileInput({
       } else {
         dispatch(
           appActions.addOneInfoMessage(
-            new InfoMessage('The file must be at most 10Mb')
+            new InfoMessage('Image file size must be at most 10Mb')
           )
         );
       }
@@ -47,9 +47,6 @@ function FileInput({
         <FormControl
           className={styles.placeholder}
           value={fileName}
-          // onChange={(e: ChangeEvent<HTMLInputElement>) => {
-          //   setFileName(e.target.value);
-          // }}
           placeholder="Upload image"
           aria-describedby="basic-addon2"
           readOnly={true}

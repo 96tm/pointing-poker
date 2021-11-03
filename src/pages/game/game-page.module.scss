@@ -70,3 +70,9 @@ $shadow: var(--main-shadow);
     padding: 0 10px 31px 10px;
   }
 }
+
+@media (max-width: 499px) {
+  .content {
+    display: none;
+  }
+}
