@@ -9,6 +9,11 @@
   list-style: none;
 }
 
+.listItem,
+.createIssueCardContainer {
+  height: 5.5rem;
+}
+
 @media (max-width: 810px) {
   .issuesList {
     width: 200px;

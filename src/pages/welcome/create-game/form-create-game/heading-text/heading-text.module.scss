@@ -9,11 +9,7 @@ $main-font: var(--main-font);
 }
 
 .title {
-  font-family: $main-font;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 64px;
-  line-height: 75px;
+  font: normal bold 64px/75px $main-font;
   color: #000000;
 }
 

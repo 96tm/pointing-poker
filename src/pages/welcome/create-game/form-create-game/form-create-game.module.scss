@@ -1,19 +1,19 @@
 $main-font: var(--main-font);
 $second-font: var(--second-font);
+$shadow: var(--main-shadow);
+$bg-blue: var(--bg-blue);
+$error-color: var(--error-color);
+$button-border: #496a81;
 
 .connect {
+  display: flex;
   width: 100%;
   max-width: 876px;
-  display: flex;
 }
 
 .title {
-  font-family: $main-font;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 64px;
-  line-height: 75px;
-  color: red;
+  font: normal bold 64px/75px $main-font;
+  color: #ff0000;
 }
 
 .rowTitle {
@@ -21,18 +21,13 @@ $second-font: var(--second-font);
 }
 
 .observerLabel {
-  margin-top: 15px;
-  width: 200px;
-  font-family: $second-font;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 24px;
-  line-height: 30px;
-  display: flex;
-  align-items: center;
-  color: #000000;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  width: 200px;
+  margin-top: 15px;
+  font: normal bold 24px/30px $second-font;
+  color: #000000;
 }
 
 .observer {
@@ -43,32 +38,24 @@ $second-font: var(--second-font);
 }
 
 .container {
-  word-break: normal;
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
+  flex-direction: column;
+  word-break: normal;
 }
 
 .label {
-  text-align: start;
-  font-family: $main-font;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 24px;
-  line-height: 28px;
   display: flex;
   align-items: center;
+  text-align: start;
+  font: normal bold 24px/28px $main-font;
   color: #000000;
 }
 
 .placeholder {
-  font-family: $main-font;
-  font-style: normal;
-  font-weight: 300;
-  font-size: 20px;
-  line-height: 28px;
   display: flex;
   align-items: center;
+  font: normal 300 20px/28px $main-font;
   text-align: center;
   color: #000000;
 }
@@ -78,15 +65,11 @@ $second-font: var(--second-font);
   height: 100px;
   border-radius: 50px;
   background: #60dabf;
-  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
-  font-family: $main-font;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 48px;
-  line-height: 100px;
+  box-shadow: inset $shadow;
+  font: normal bold 48px/100px $main-font;
   text-align: center;
   color: #ffffff;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  text-shadow: $shadow;
 }
 
 .left,
@@ -103,61 +86,36 @@ $second-font: var(--second-font);
 .confirm {
   width: 189px;
   height: 60px;
-  background: #2b3a67;
-  border: 1px solid #496a81;
-  box-sizing: border-box;
+  background: $bg-blue;
+  border: 1px solid $button-border;
   border-radius: 3px;
-  font-family: $second-font;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 24px;
-  line-height: 48px;
+  font: normal bold 24px/48px $second-font;
   text-align: center;
   color: #ffffff;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  text-shadow: $shadow;
 }
 
 .cancel {
   width: 189px;
   height: 60px;
   background: #ffffff;
-  border: 1px solid #496a81;
-  box-sizing: border-box;
+  border: 1px solid $button-border;
   border-radius: 3px;
-  font-family: $second-font;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 24px;
-  line-height: 48px;
+  font: normal bold 24px/48px $second-font;
   text-align: center;
-  color: #2b3a67;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  color: $bg-blue;
+  text-shadow: $shadow;
 }
 
 .tipError {
-  white-space: nowrap;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  font-style: normal;
+  white-space: nowrap;
   font-size: 16px;
   text-align: start;
-  color: #db1b1b;
+  color: $error-color;
   padding-bottom: 3%;
-}
-
-/* file input*/
-.field__wrapper {
-  width: 100%;
-  position: relative;
-  margin: 15px 0;
-  text-align: center;
-}
-
-.field__file {
-  opacity: 0;
-  visibility: hidden;
-  position: absolute;
 }
 
 @media (max-width: 1000px) {

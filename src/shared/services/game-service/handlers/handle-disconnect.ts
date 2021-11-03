@@ -12,7 +12,10 @@ export default function handleDisconnect(reason: string): void {
     if (store.getState().game.status === TGameStatus.inactive) {
       store.dispatch(
         appActions.addOneInfoMessage(
-          new InfoMessage(`Can't connect to server`, TInfoMessageType.error)
+          new InfoMessage(
+            `Can't connect to server`,
+            TInfoMessageType.error
+          ).toObject()
         )
       );
     } else {

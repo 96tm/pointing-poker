@@ -1,6 +1,6 @@
 import { TCardScoreSpecialValue, TCardType } from '../../../redux/types/card';
 
-export const deck = {
+export const DECKS = {
   [TCardType.fib]: [
     TCardScoreSpecialValue.unknown,
     TCardScoreSpecialValue.break,

@@ -9,7 +9,7 @@ export function ButtonBlue(
     <BaseButton
       {...{
         ...props,
-        className: `${props.className} || '' ${styles.buttonBlue}`,
+        className: `${props.className || ''} ${styles.buttonBlue}`,
       }}
     >
       {props.children}

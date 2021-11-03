@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { gameSelectors } from '../../../redux/selectors';
 import { IUser } from '../../../redux/types';
-import PlayerCard from '../../game/player-card/player-card';
+import PlayerCard from '../../shared/player-card/player-card';
 import styles from './about-dealer.module.scss';
 
 const AboutDealer = (): JSX.Element => {

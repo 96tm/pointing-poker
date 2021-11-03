@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Form from 'react-bootstrap/Form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import {
@@ -20,16 +19,16 @@ import { APP_CONSTANTS } from '../../../shared/constants';
 import { gameService } from '../../../shared/services/game-service/game-service';
 import { BaseButton } from '../../shared/buttons/base-button/base-button';
 import { ButtonBlue } from '../../shared/buttons/button-blue/button-blue';
-import SideBar from '../../shared/side-bar/side-bar';
+import Sidebar from '../../shared/sidebar/sidebar';
 import SprintHeading from '../../shared/sprint-heading/sprint-heading';
 import AboutDealer from '../about-dealer/about-dealer';
-import CreateIssueCard from '../card-create-issue/card-create-issue';
-import Members from '../members/members';
-import styles from './dealer-lobby.module.scss';
-import IssueCard from './issue-card/issue-card';
 import Settings from './settings/settings';
+import GameInfo from './game-info/game-info';
+import IssuesList from './issues-list/issues-list';
+import PlayersList from '../players-list/players-list';
+import styles from './dealer-lobby.module.scss';
 
-const DealerLobby = (): JSX.Element => {
+export default function DealerLobby(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
   const history = useHistory();
   const isSideBarShown = useSelector(lobbyPageSelectors.selectIsSideBarShown);
@@ -39,7 +38,6 @@ const DealerLobby = (): JSX.Element => {
   const gameSettings = useSelector(gameSettingsSelectors.selectSettings);
   const gameId = useSelector(gameSelectors.selectGame).id;
   const gameStatus = useSelector(gameSelectors.selectStatus);
-
   const [gameURL] = useState(`${APP_CONSTANTS.URL}/lobby/${gameId}`);
 
   useEffect(() => {
@@ -70,8 +68,6 @@ const DealerLobby = (): JSX.Element => {
   };
 
   const handleStart = async () => {
-    console.log('start');
-
     const response = await dispatch(
       thunks.startGameThunk({
         settings: gameSettings,
@@ -80,8 +76,6 @@ const DealerLobby = (): JSX.Element => {
       })
     );
     const payload = response.payload as Partial<IRequestResult>;
-    console.log('payload');
-
     if (payload.message) {
       dispatch(
         appActions.addOneInfoMessage(
@@ -103,30 +97,7 @@ const DealerLobby = (): JSX.Element => {
           <SprintHeading issues={issues} />
         </div>
         <AboutDealer />
-        <div className={styles.containerLinkToLobby}>
-          <h4 className={styles.titleLinkTo}>Link to lobby:</h4>
-          <div className="form">
-            <Form>
-              <Form.Group>
-                <Form.Control
-                  type="url"
-                  className={styles.input}
-                  value={gameURL}
-                  readOnly={true}
-                />
-                <ButtonBlue
-                  type="button"
-                  className={styles.btnCopy}
-                  onClick={() =>
-                    globalThis.navigator.clipboard.writeText(gameURL)
-                  }
-                >
-                  Copy
-                </ButtonBlue>
-              </Form.Group>
-            </Form>
-          </div>
-        </div>
+        <GameInfo gameURL={gameURL} />
         <div className={styles.btnGameContainer}>
           <ButtonBlue className={styles.btnStart} onClick={handleStart}>
             Start Game
@@ -135,30 +106,16 @@ const DealerLobby = (): JSX.Element => {
             Cancel game
           </BaseButton>
         </div>
-        <Members users={users} />
-        <div className={styles.issuesContainer}>
-          <h2 className={styles.titleIssues}>Issues:</h2>
-          <div className={styles.wrapperIssue}>
-            {issues.map((item) => {
-              return (
-                <div className={styles.card} key={item.id}>
-                  <IssueCard infoIssue={item} />
-                </div>
-              );
-            })}
-            <CreateIssueCard />
-          </div>
-        </div>
+        <PlayersList players={users} />
+        <IssuesList />
         <div className={styles.containerSettings}>
           <div className={styles.titleSettings}>Game settings:</div>
           <Settings />
         </div>
       </div>
-      {isSideBarShown && <SideBar />}
+      {isSideBarShown && <Sidebar />}
     </div>
   ) : (
     <div />
   );
-};
-
-export default DealerLobby;
+}

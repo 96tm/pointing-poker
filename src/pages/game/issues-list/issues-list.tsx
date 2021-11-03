@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { currentUserSelectors, gameSelectors } from '../../../redux/selectors';
-import CreateIssueCard from '../card-create-issue/card-create-issue';
-import IssueCard from '../issue-card/issue-card';
+import CreateIssueCard from '../../shared/card-create-issue/card-create-issue';
+import IssueCard from '../../shared/issue-card/issue-card';
 import styles from './issues-list.module.scss';
 
 export default function IssuesList(): JSX.Element {
@@ -19,7 +19,11 @@ export default function IssuesList(): JSX.Element {
           />
         </li>
       ))}
-      {isDealer && <CreateIssueCard />}
+      {isDealer && (
+        <div className={styles.createIssueCardContainer}>
+          <CreateIssueCard showUploadButton={false} />
+        </div>
+      )}
     </ul>
   );
 }

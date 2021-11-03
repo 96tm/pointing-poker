@@ -1,0 +1,23 @@
+$bg-blue: var(--bg-blue);
+
+.infoPopup {
+  min-width: 100%;
+  color: gray;
+  padding: 1%;
+  font-size: 0.88rem;
+  .value {
+    word-break: break-all;
+  }
+  .key {
+    font-weight: 600;
+    color: $bg-blue;
+  }
+}
+
+.fieldAvatar {
+  position: relative;
+  width: 10rem;
+  height: 10rem;
+  font-size: 6rem;
+  margin-bottom: 0.1em;
+}

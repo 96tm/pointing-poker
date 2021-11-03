@@ -1,4 +1,3 @@
-import styles from '../connect-to-lobby.module.scss';
 import React from 'react';
 import {
   Form,
@@ -8,13 +7,14 @@ import {
   FormControl,
   FormControlProps,
 } from 'react-bootstrap';
+import styles from '../connect-to-lobby.module.scss';
 
 interface ILastNameProps {
   reg: FormControlProps;
   handleChangeInput: () => void;
 }
 
-function LastName({
+export default function LastName({
   reg,
   handleChangeInput,
 }: React.PropsWithChildren<ILastNameProps>): JSX.Element {
@@ -32,5 +32,3 @@ function LastName({
     </Row>
   );
 }
-
-export default LastName;

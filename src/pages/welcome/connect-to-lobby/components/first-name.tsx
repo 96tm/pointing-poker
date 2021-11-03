@@ -1,4 +1,3 @@
-import styles from '../connect-to-lobby.module.scss';
 import React from 'react';
 import {
   Form,
@@ -9,6 +8,7 @@ import {
   FormControlProps,
 } from 'react-bootstrap';
 import { FieldErrors } from 'react-hook-form';
+import styles from '../connect-to-lobby.module.scss';
 
 interface IFirstNameProps {
   reg: FormControlProps;
@@ -16,7 +16,7 @@ interface IFirstNameProps {
   handleChangeInput: () => void;
 }
 
-function FirstName({
+export default function FirstName({
   reg,
   errors,
   handleChangeInput,
@@ -53,5 +53,3 @@ function FirstName({
     </Row>
   );
 }
-
-export default FirstName;

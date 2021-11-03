@@ -1,162 +1,109 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { currentUserSelectors, gameSelectors } from '../../../redux/selectors';
-import { appActions } from '../../../redux/slices/app/app-slice';
-import { AppDispatch } from '../../../redux/store';
-import { thunks } from '../../../redux/thunks/thunks';
-import { IRequestResult, IUser, TUserRole } from '../../../redux/types';
-import {
-  InfoMessage,
-  TInfoMessageType,
-} from '../../../redux/types/info-message';
+import { IUser, TUserRole } from '../../../redux/types';
+import observer from '../../../shared/assets/icons/observer.svg';
 import removeUser from '../../../shared/assets/icons/remove-user.svg';
-import { BasePopup } from '../base-popup/base-popup';
+import Avatar from './avatar/avatar';
+import DealerKickPopup from './dealer-kick-popup/dealer-kick-popup';
+import PlayerInfoPopover from './player-info-popover/player-info-popover';
+import PlayerKickPopup from './player-kick-popup/player-kick-popup';
 import styles from './player-card.module.scss';
 
-interface IPlayerProps {
+export interface IPlayerCardProps {
   user: IUser;
-  className?: string;
+  customClass?: string;
 }
 
-const Player = ({ user }: IPlayerProps): JSX.Element => {
+export default function PlayerCard({
+  user,
+  customClass,
+}: IPlayerCardProps): JSX.Element {
   const MIN_NUMBER_OF_PLAYERS_TO_VOTE = 3;
-  const dispatch = useDispatch<AppDispatch>();
-  const gameId = useSelector(gameSelectors.selectId);
   const currentUser = useSelector(currentUserSelectors.selectCurrentUser);
   const dealer = useSelector(gameSelectors.selectDealer) as IUser;
-  const [showDealerKickPopup, setDealerKickPopup] = useState(false);
-  const [showPlayerKickPopup, setPlayerKickPopup] = useState(false);
   const players = useSelector(gameSelectors.selectPlayers);
-  const canKick =
-    currentUser.id !== user.id &&
-    ((currentUser.role !== TUserRole.observer &&
-      players.length > MIN_NUMBER_OF_PLAYERS_TO_VOTE &&
-      user.role !== TUserRole.dealer) ||
-      currentUser.role === TUserRole.dealer);
+  const [isDealerKickPopupShown, setIsDealerKickPopupShown] = useState(false);
+  const [isPlayerKickPopupShown, setIsPlayerKickPopupShown] = useState(false);
+  const [isPopoverShown, setIsPopoverShown] = useState(false);
 
-  const getName = (a: string, b: string | undefined): string => {
-    let str = '';
-    str += a.slice(0, 1);
-    if (b != undefined) {
-      str += b.slice(0, 1);
-    }
-    return str;
+  const canKick = () => {
+    return (
+      currentUser.id !== user.id &&
+      ((currentUser.role !== TUserRole.observer &&
+        players.filter((player) => player.role === TUserRole.player).length >=
+          MIN_NUMBER_OF_PLAYERS_TO_VOTE &&
+        user.role !== TUserRole.dealer) ||
+        currentUser.role === TUserRole.dealer)
+    );
   };
 
   const handleClickKick = () => {
     if (currentUser.id === dealer.id) {
-      setDealerKickPopup(true);
+      setIsDealerKickPopupShown(true);
     } else {
-      setPlayerKickPopup(true);
+      setIsPlayerKickPopupShown(true);
     }
   };
 
   const handleCloseKickPopup = () => {
-    setDealerKickPopup(false);
-    setPlayerKickPopup(false);
-  };
-
-  const kick = async () => {
-    const response = await dispatch(
-      thunks.kickPlayerThunk({
-        dealerId: currentUser.id,
-        kickedPlayerId: user.id,
-        gameId,
-      })
-    );
-    handleCloseKickPopup();
-    const payload = response.payload as Partial<IRequestResult>;
-    if (payload.message) {
-      dispatch(
-        appActions.addOneInfoMessage(
-          new InfoMessage(payload.message, TInfoMessageType.error).toObject()
-        )
-      );
-      return;
-    }
-  };
-
-  const startVotingToKick = async () => {
-    const response = await dispatch(
-      thunks.startVotingToKickThunk({
-        votingPlayerId: currentUser.id,
-        kickedPlayerId: user.id,
-        gameId,
-      })
-    );
-    handleCloseKickPopup();
-    const payload = response.payload as Partial<IRequestResult>;
-    if (payload.message) {
-      dispatch(
-        appActions.addOneInfoMessage(
-          new InfoMessage(payload.message, TInfoMessageType.error).toObject()
-        )
-      );
-      return;
-    }
+    setIsDealerKickPopupShown(false);
+    setIsPlayerKickPopupShown(false);
   };
 
   return (
-    <div className={styles.card}>
-      {showDealerKickPopup && (
-        <BasePopup
-          headingText="Kick player"
-          buttonOkText="Kick"
-          buttonCancelText="Cancel"
-          buttonOkProps={{ onClick: kick }}
-          buttonCancelProps={{ onClick: handleCloseKickPopup }}
-        >
-          <div className={styles.dealerKickPopup}>
-            Kick
-            <span className={styles.nameKickPlayer}>
-              {`
-              ${user.firstName} ${user.lastName} `}
-            </span>
-            from the game?
-          </div>
-        </BasePopup>
-      )}
-      {showPlayerKickPopup && (
-        <BasePopup
-          headingText="Kick player"
-          buttonOkText="Kick"
-          buttonCancelText="Cancel"
-          buttonOkProps={{ onClick: startVotingToKick }}
-          buttonCancelProps={{ onClick: handleCloseKickPopup }}
-        >
-          <div className={styles.dealerKickPopup}>
-            Kick
-            <span className={styles.nameKickPlayer}>
-              {`
-              ${user.firstName} ${user.lastName} `}
-            </span>
-            from the game?
-          </div>
-        </BasePopup>
-      )}
-      {user?.image ? (
-        <img className={styles.img} src={user?.image}></img>
-      ) : (
-        <div className={styles.avatar}>
-          {getName(user.firstName, user?.lastName)}
-        </div>
-      )}
-      <div className={styles.name}>
-        {currentUser.id === user.id && (
-          <h6 className={styles.currentUser}>It`s you</h6>
-        )}
-        <h5 className={styles.h5}>
-          {user?.firstName} {user?.lastName}
-        </h5>
-        <h6 className={styles.h6}>{user?.jobPosition}</h6>
+    <div className={`${styles.card} ${customClass || ''}`}>
+      <PlayerKickPopup
+        isShown={isPlayerKickPopupShown}
+        playerToKick={user}
+        handleCloseKickPopup={handleCloseKickPopup}
+      />
+      <DealerKickPopup
+        isShown={isDealerKickPopupShown}
+        playerToKick={user}
+        handleCloseKickPopup={handleCloseKickPopup}
+      />
+      <div
+        className={styles.avatarContainer}
+        onMouseEnter={() => {
+          setIsPopoverShown(true);
+        }}
+      >
+        <Avatar player={user} />
       </div>
-      {canKick && (
+      <div className={styles.info}>
+        {currentUser.id === user.id && (
+          <div className={styles.currentUser}>It`s you</div>
+        )}
+        <div className={styles.name}>
+          {user?.firstName} {user?.lastName}
+        </div>
+        <div className={styles.jobPosition}>{user?.jobPosition}</div>
+      </div>
+      {user.role === TUserRole.observer && (
+        <img
+          src={observer}
+          title="Observer"
+          className={styles.observerImg}
+          alt="Observer"
+        />
+      )}
+      {canKick() && (
         <button className={styles.remove} onClick={handleClickKick}>
-          <img src={removeUser} className={styles.removeImg} alt="Kick" />
+          <img
+            src={removeUser}
+            className={styles.removeImg}
+            title="Kick player"
+            alt="Kick"
+          />
         </button>
+      )}
+      {isPopoverShown && (
+        <PlayerInfoPopover
+          player={user}
+          setIsPopoverShown={setIsPopoverShown}
+        />
       )}
     </div>
   );
-};
-
-export default Player;
+}

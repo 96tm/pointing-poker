@@ -1,0 +1,31 @@
+$font: var(--main-font);
+
+.issueInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 30%;
+}
+
+.currentStatus {
+  position: absolute;
+  font: normal 700 0.375em $font;
+  text-transform: uppercase;
+}
+
+.title {
+  width: 100%;
+  padding-top: 8px;
+  overflow-x: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: left;
+}
+
+.priority {
+  font: normal 300 0.3em $font;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}

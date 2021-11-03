@@ -4,7 +4,7 @@ import { BasePopup } from './base-popup';
 
 describe('Base pop-up', () => {
   test('renders empty popup', () => {
-    render(<BasePopup />);
+    render(<BasePopup isShown={true} />);
   });
 
   test('renders popup with heading, content and both buttons', () => {
@@ -12,6 +12,7 @@ describe('Base pop-up', () => {
     const handleButtonCancel = jest.fn();
     const { getByText } = render(
       <BasePopup
+        isShown={true}
         headingText="heading"
         buttonOkText="buttonOk"
         buttonCancelText="buttonCancel"

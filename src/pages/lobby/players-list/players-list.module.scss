@@ -1,0 +1,54 @@
+$font: var(--second-font);
+
+.container {
+  padding: 2% 0;
+  color: gray;
+}
+
+.h2 {
+  color: black;
+  font: normal 700 22px/30px $font;
+}
+
+.playersContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  font-size: 17px;
+}
+
+@media (max-width: 1200px) {
+  .playersContainer {
+    font-size: 15px;
+  }
+}
+@media (max-width: 940px) {
+  .btnExit {
+    padding: 0.3% 4.5%;
+    font-size: 11px;
+  }
+  .h2 {
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 810px) {
+  .playersContainer {
+    font-size: 13px;
+  }
+  .h2 {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 530px) {
+  .playersContainer {
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+@media (max-width: 400px) {
+  .playersContainer {
+    width: 200px;
+  }
+}

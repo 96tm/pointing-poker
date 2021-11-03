@@ -1,0 +1,26 @@
+$font: var(--main-font);
+$bg: var(--bg-avatar);
+$shadow: var(--main-shadow);
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  background: $bg;
+  box-shadow: inset $shadow;
+  font: normal bold 48px/100px $font;
+  line-height: 100px;
+  text-align: center;
+  color: #ffffff;
+  text-shadow: $shadow;
+}
+
+.avatarImg {
+  display: none;
+}
+
+@media (max-width: 400px) {
+  .avatar {
+    margin: 0 auto;
+  }
+}

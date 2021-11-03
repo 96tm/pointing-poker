@@ -3,13 +3,13 @@ import { useHistory } from 'react-router';
 import { IIssue, Issue } from '../../redux/types';
 import { ReactComponent as IconDownload } from '../../shared/assets/icons/download.svg';
 import { ReactComponent as IconRestart } from '../../shared/assets/icons/restart.svg';
-import IssueCard from '../game/issue-card/issue-card';
 import { ButtonBlue } from '../shared/buttons/button-blue/button-blue';
+import IssueCard from '../shared/issue-card/issue-card';
 import IssueScoreStatistics from '../shared/issue-score-statistics/issue-score-statistics';
 import SprintHeading from '../shared/sprint-heading/sprint-heading';
 import styles from './game-result.module.scss';
 
-function GameResult(): JSX.Element {
+export default function GameResult(): JSX.Element {
   const history = useHistory();
   const { issues } = (history?.location?.state as { issues: IIssue[] }) || {
     issues: [],
@@ -79,5 +79,3 @@ function GameResult(): JSX.Element {
     </div>
   );
 }
-
-export default GameResult;

@@ -1,5 +1,6 @@
 .container {
-  padding: 2% 0 1%;
+  width: 80%;
+  padding-bottom: 0.5em;
   color: gray;
 }
 .role {
@@ -13,21 +14,13 @@
   font-size: 17px;
 }
 
-@media (max-width: 1200px) {
-  .playersContainer {
-    font-size: 15px;
-  }
-}
-@media (max-width: 810px) {
-  .playersContainer {
-    font-size: 13px;
-  }
-}
 @media (max-width: 530px) {
-  .role {
-    margin-left: 10%;
+  .container {
+    margin: 0 auto;
   }
-  .playersContainer {
-    justify-content: space-evenly;
+}
+@media (max-width: 400px) {
+  .container {
+    width: 200px;
   }
 }

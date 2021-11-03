@@ -170,16 +170,6 @@ export default function GameControls({
               </BaseButton>
             </div>
             <div className={styles.roundButtons}>
-              {(!currentIssue ||
-                !Object.keys(currentIssue.lastRoundResult).length) && (
-                <ButtonBlue
-                  disabled={!currentIssue || gameStatus !== TGameStatus.started}
-                  className={styles.button}
-                  onClick={handleStart}
-                >
-                  Start round
-                </ButtonBlue>
-              )}
               {currentIssue &&
                 Object.keys(currentIssue.lastRoundResult).length > 0 && (
                   <ButtonBlue

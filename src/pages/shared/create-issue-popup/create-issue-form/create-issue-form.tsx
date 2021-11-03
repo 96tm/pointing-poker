@@ -4,18 +4,18 @@ import styles from './create-issue-form.module.scss';
 
 export interface ICreateIssueFormProps {
   info: IIssue;
-  setIssueFields: React.Dispatch<React.SetStateAction<IIssue>>;
   warning: string;
+  setIssueFields: React.Dispatch<React.SetStateAction<IIssue>>;
 }
 
-export function CreateIssueForm({
+export default function CreateIssueForm({
   info,
   setIssueFields,
   warning,
 }: ICreateIssueFormProps): JSX.Element {
   return (
     <div className={styles.container}>
-      <h4 className={styles.titlePopup}>Create Issue</h4>
+      <h4 className={styles.popupTitle}>Create Issue</h4>
       <form className={styles.form}>
         <label htmlFor="title" className={styles.label}>
           <p>Title:</p>
@@ -64,5 +64,3 @@ export function CreateIssueForm({
     </div>
   );
 }
-
-export default CreateIssueForm;
