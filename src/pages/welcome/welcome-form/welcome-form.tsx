@@ -4,16 +4,16 @@ import { ButtonBlue } from '../../shared/buttons/button-blue/button-blue';
 import styles from './welcome-form.module.scss';
 
 interface IWelcomeFormProps {
-  handleClickNewGame(): void;
-  handleClickConnect(): void;
-  handleChange(event: ChangeEvent<HTMLInputElement>): void;
+  onClickNewGame(): void;
+  onClickConnect(): void;
+  onChange(event: ChangeEvent<HTMLInputElement>): void;
   gameURL: string;
 }
 
 export default function WelcomeForm({
-  handleClickNewGame,
-  handleClickConnect,
-  handleChange,
+  onClickNewGame,
+  onClickConnect,
+  onChange,
   gameURL,
 }: IWelcomeFormProps): JSX.Element {
   return (
@@ -26,7 +26,7 @@ export default function WelcomeForm({
           <ButtonBlue
             type="button"
             className={styles.btn}
-            onClick={handleClickNewGame}
+            onClick={onClickNewGame}
           >
             Start new game
           </ButtonBlue>
@@ -39,12 +39,12 @@ export default function WelcomeForm({
           placeholder="Connect to lobby by URL:"
           value={gameURL}
           className={styles.input}
-          onChange={handleChange}
+          onChange={onChange}
         />
         <ButtonBlue
           type="button"
           className={`${styles.btn} ${styles.btnConnect}`}
-          onClick={handleClickConnect}
+          onClick={onClickConnect}
           data-testid="btn"
         >
           Connect

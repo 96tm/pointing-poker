@@ -6,12 +6,12 @@ import styles from './popup-form.module.scss';
 
 interface IPopupFormProps {
   newCardValues: TCardScore[];
-  handleChange(event: ChangeEvent<HTMLInputElement | HTMLSelectElement>): void;
+  onChange(event: ChangeEvent<HTMLInputElement | HTMLSelectElement>): void;
 }
 
 export default function PopupForm({
   newCardValues,
-  handleChange,
+  onChange,
 }: IPopupFormProps): JSX.Element {
   const { cardType } = useSelector(gameSettingsSelectors.selectSettings);
 
@@ -23,7 +23,7 @@ export default function PopupForm({
           <select
             name="updateCard"
             className={styles.cardSelect}
-            onChange={handleChange}
+            onChange={onChange}
           >
             {newCardValues.map((item) => {
               return <option key={item}>{item}</option>;
@@ -40,7 +40,7 @@ export default function PopupForm({
           type="number"
           name="addCard"
           className={styles.cardSelect}
-          onChange={handleChange}
+          onChange={onChange}
         ></input>
       </label>
     </form>

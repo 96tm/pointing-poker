@@ -5,25 +5,22 @@ import FormCreateGame from './form-create-game/form-create-game';
 interface ICreateGameProps {
   isShown: boolean;
   isMounted?: boolean;
-  handleCancelClick(): void;
+  onCancel(): void;
 }
 
-const CreateGame = ({
-  handleCancelClick,
-  isShown,
-}: ICreateGameProps): JSX.Element => {
+const CreateGame = ({ isShown, onCancel }: ICreateGameProps): JSX.Element => {
   return (
     <BasePopup
       isShown={isShown}
       buttonOkText="Confirm"
       buttonCancelText="Cancel"
-      buttonCancelProps={{ onClick: handleCancelClick }}
+      buttonCancelProps={{ onClick: onCancel }}
       buttonOkProps={{
         form: 'textId',
         type: 'submit',
       }}
     >
-      <FormCreateGame onCancelClick={handleCancelClick} />
+      <FormCreateGame onCancelClick={onCancel} />
     </BasePopup>
   );
 };

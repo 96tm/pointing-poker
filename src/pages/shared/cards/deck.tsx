@@ -7,7 +7,7 @@ import {
 } from '../../../redux/selectors';
 import { appActions } from '../../../redux/slices/app/app-slice';
 import { AppDispatch } from '../../../redux/store';
-import { thunks } from '../../../redux/thunks/thunks';
+import { scoreIssueThunk } from '../../../redux/thunks';
 import { IRequestResult, TGameStatus } from '../../../redux/types';
 import { TCardScore } from '../../../redux/types/card';
 import {
@@ -35,7 +35,7 @@ export default function Deck(): JSX.Element {
     ) {
       setSelectedCard(cardValue);
       const response = await dispatch(
-        thunks.scoreIssueThunk({
+        scoreIssueThunk({
           issueId: currentIssueId,
           playerId: currentUser.id,
           score: cardValue,
@@ -64,7 +64,7 @@ export default function Deck(): JSX.Element {
               cardValue={cardValue}
               mode="single"
               isSelected={selectedCard === cardValue}
-              handleClick={() => handleClick(cardValue)}
+              onClick={() => handleClick(cardValue)}
             />
           ) : (
             <PlayCard
@@ -72,7 +72,7 @@ export default function Deck(): JSX.Element {
               cardValue={cardValue}
               mode="deck"
               isSelected={selectedCard === cardValue}
-              handleClick={() => handleClick(cardValue)}
+              onClick={() => handleClick(cardValue)}
             />
           )
         )}

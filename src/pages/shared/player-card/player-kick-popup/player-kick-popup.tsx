@@ -7,7 +7,7 @@ import {
 } from '../../../../redux/types/info-message';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../../../../redux/store';
-import { thunks } from '../../../../redux/thunks/thunks';
+import { startVotingToKickThunk } from '../../../../redux/thunks';
 import {
   currentUserSelectors,
   gameSelectors,
@@ -18,13 +18,13 @@ import styles from '../player-card.module.scss';
 interface IPlayerKickPopupProps {
   isShown: boolean;
   playerToKick: IUser;
-  handleCloseKickPopup(): void;
+  onClose(): void;
 }
 
 export default function PlayerKickPopup({
   isShown,
   playerToKick,
-  handleCloseKickPopup,
+  onClose,
 }: IPlayerKickPopupProps): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
   const gameId = useSelector(gameSelectors.selectId);
@@ -32,13 +32,13 @@ export default function PlayerKickPopup({
 
   const startVotingToKick = async () => {
     const response = await dispatch(
-      thunks.startVotingToKickThunk({
+      startVotingToKickThunk({
         votingPlayerId: currentUser.id,
         kickedPlayerId: playerToKick.id,
         gameId,
       })
     );
-    handleCloseKickPopup();
+    onClose();
     const payload = response.payload as Partial<IRequestResult>;
     if (payload.message) {
       dispatch(
@@ -56,7 +56,7 @@ export default function PlayerKickPopup({
       buttonOkText="Kick"
       buttonCancelText="Cancel"
       buttonOkProps={{ onClick: startVotingToKick }}
-      buttonCancelProps={{ onClick: handleCloseKickPopup }}
+      buttonCancelProps={{ onClick: onClose }}
     >
       <div className={styles.kickPopup}>
         <h4 className={styles.popupTitle}>Kick player</h4>

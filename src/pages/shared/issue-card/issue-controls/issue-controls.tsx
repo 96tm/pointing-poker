@@ -13,7 +13,7 @@ import {
 import iconDeleteIssue from '../../../../shared/assets/icons/deleteIssue.png';
 import iconEditIssue from '../../../../shared/assets/icons/edit-issue.svg';
 import { AppDispatch } from '../../../../redux/store';
-import { thunks } from '../../../../redux/thunks/thunks';
+import { deleteIssueThunk } from '../../../../redux/thunks';
 import { appActions } from '../../../../redux/slices/app/app-slice';
 import {
   InfoMessage,
@@ -44,7 +44,7 @@ export default function IssueControls({
 
   const handleDeleteIssue = async () => {
     await dispatch(
-      thunks.deleteIssueThunk({
+      deleteIssueThunk({
         dealerId: dealer.id,
         deletedIssueId: issueFields.id,
         gameId,
@@ -54,7 +54,7 @@ export default function IssueControls({
 
   const deleteIssue = async () => {
     const response = await dispatch(
-      thunks.deleteIssueThunk({
+      deleteIssueThunk({
         dealerId: currentUser.id,
         deletedIssueId: issue.id,
         gameId,

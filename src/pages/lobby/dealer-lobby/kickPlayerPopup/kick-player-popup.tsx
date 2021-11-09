@@ -6,7 +6,7 @@ import {
 import { IRequestResult, IUser, User } from '../../../../redux/types';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../../../../redux/store';
-import { thunks } from '../../../../redux/thunks/thunks';
+import { voteToKickThunk } from '../../../../redux/thunks';
 import {
   InfoMessage,
   TInfoMessageType,
@@ -36,7 +36,7 @@ export default function KickPlayerPopup({
 
   const declineKickVote = async () => {
     const response = await dispatch(
-      thunks.voteToKickThunk({
+      voteToKickThunk({
         votingPlayerId: currentUser.id,
         gameId,
         kickedPlayerId: votingKick.kickedPlayerId,
@@ -57,7 +57,7 @@ export default function KickPlayerPopup({
 
   const acceptKickVote = async () => {
     const response = await dispatch(
-      thunks.voteToKickThunk({
+      voteToKickThunk({
         votingPlayerId: currentUser.id,
         gameId,
         kickedPlayerId: votingKick.kickedPlayerId,

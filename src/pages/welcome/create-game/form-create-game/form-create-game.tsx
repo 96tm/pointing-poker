@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import { appActions } from '../../../../redux/slices/app/app-slice';
 import { AppDispatch } from '../../../../redux/store';
-import { thunks } from '../../../../redux/thunks/thunks';
+import { connectThunk, createGameThunk } from '../../../../redux/thunks';
 import {
   ICreateGameRequestResult,
   TUserRole,
@@ -73,7 +73,7 @@ function FormCreateGame({}: IFormCreateGameProps): JSX.Element {
   const [playerName, setPlayerName] = useState('NN');
 
   const onConfirmClick = handleSubmit(async (data) => {
-    const connectionResponse = await dispatch(thunks.connectThunk());
+    const connectionResponse = await dispatch(connectThunk());
     const connectionPayload = connectionResponse.payload as IResponse;
     if (connectionPayload.message) {
       dispatch(
@@ -100,7 +100,7 @@ function FormCreateGame({}: IFormCreateGameProps): JSX.Element {
     });
 
     const response = await dispatch(
-      thunks.createGameThunk({ dealerInfo: currentUser })
+      createGameThunk({ dealerInfo: currentUser })
     );
     const payload = response.payload as Partial<ICreateGameRequestResult>;
     if (payload.message) {
@@ -141,7 +141,7 @@ function FormCreateGame({}: IFormCreateGameProps): JSX.Element {
           <HeadingText text="Create game" />
         </Row>
         <FirstName
-          handleChangeInput={handleChangeInput}
+          onChange={handleChangeInput}
           reg={{
             ...register('firstName', {
               validate: {
@@ -154,7 +154,7 @@ function FormCreateGame({}: IFormCreateGameProps): JSX.Element {
           errors={{ ...errors }}
         />
         <LastName
-          handleChangeInput={handleChangeInput}
+          onChange={handleChangeInput}
           reg={{ ...register('lastName') }}
         />
         <JobPosition reg={{ ...register('jobPosition') }} />

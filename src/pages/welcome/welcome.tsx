@@ -4,7 +4,7 @@ import { useHistory } from 'react-router';
 import { gameSelectors } from '../../redux/selectors';
 import { appActions } from '../../redux/slices/app/app-slice';
 import { AppDispatch } from '../../redux/store';
-import { thunks } from '../../redux/thunks/thunks';
+import { checkGameThunk, connectThunk } from '../../redux/thunks';
 import { TGameStatus } from '../../redux/types';
 import { InfoMessage, TInfoMessageType } from '../../redux/types/info-message';
 import logoGame from '../../shared/assets/icons/logo.svg';
@@ -64,9 +64,7 @@ const WelcomePage = (): JSX.Element => {
     const isUrlValid = testUrl(gameURL);
     if (isUrlValid) {
       const gameIdLocal = gameURL.split('/').slice(-1)[0];
-      const response = await dispatch(
-        thunks.checkGameThunk({ gameId: gameIdLocal })
-      );
+      const response = await dispatch(checkGameThunk({ gameId: gameIdLocal }));
       const payload = response.payload as ICheckGameResponse;
       if (payload.message) {
         dispatch(
@@ -92,7 +90,7 @@ const WelcomePage = (): JSX.Element => {
           )
         );
       } else {
-        const connectionResponse = await dispatch(thunks.connectThunk());
+        const connectionResponse = await dispatch(connectThunk());
         const { message } = connectionResponse.payload as IResponse;
         if (message) {
           dispatch(
@@ -116,19 +114,19 @@ const WelcomePage = (): JSX.Element => {
         <ConnectToLobby
           isShown={isLobbyConnectShown}
           gameId={gameId}
-          handleCancelClick={() => setIsLobbyConnectShown(false)}
+          onCancel={() => setIsLobbyConnectShown(false)}
         />
         <CreateGame
           isShown={isNewGameShown}
-          handleCancelClick={() => setIsNewGameShown(false)}
+          onCancel={() => setIsNewGameShown(false)}
         />
         <div className={styles.wrapperLogo}>
           <img src={logoGame} className={styles.logo} alt="logo game"></img>
         </div>
         <WelcomeForm
-          handleClickNewGame={handleClickNewGame}
-          handleClickConnect={handleClickConnect}
-          handleChange={handleChange}
+          onClickNewGame={handleClickNewGame}
+          onClickConnect={handleClickConnect}
+          onChange={handleChange}
           gameURL={gameURL}
         />
       </div>

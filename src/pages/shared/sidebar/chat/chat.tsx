@@ -7,7 +7,7 @@ import {
 } from '../../../../redux/selectors';
 import { appActions } from '../../../../redux/slices/app/app-slice';
 import { AppDispatch } from '../../../../redux/store';
-import { thunks } from '../../../../redux/thunks/thunks';
+import { postMessageThunk } from '../../../../redux/thunks';
 import { IRequestResult, Message } from '../../../../redux/types';
 import {
   InfoMessage,
@@ -39,7 +39,7 @@ export default function Chat(): JSX.Element {
         userId: currentUserId,
       }).toObject();
       const response = await dispatch(
-        thunks.postMessageThunk({
+        postMessageThunk({
           message,
           gameId: gameId,
         })

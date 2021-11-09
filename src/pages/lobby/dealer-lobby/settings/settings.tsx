@@ -28,10 +28,7 @@ export default function GameSettings(): JSX.Element {
     <div className={styles.settingsList}>
       <BooleanSettings />
       {timer && <TimerSetting timer={timer} />}
-      <ScoreSetting
-        cardType={cardType}
-        handleChangeCardType={handleChangeCardType}
-      />
+      <ScoreSetting cardType={cardType} onChange={handleChangeCardType} />
       <DeckSetting />
     </div>
   );

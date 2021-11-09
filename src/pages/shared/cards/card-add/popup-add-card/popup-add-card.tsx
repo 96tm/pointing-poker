@@ -31,7 +31,7 @@ export default function PopupAddCard({
   return (
     <div className={styles.container}>
       <h4 className={styles.popupTitle}>Add Card</h4>
-      <PopupForm handleChange={handleChange} newCardValues={newCardValues} />
+      <PopupForm onChange={handleChange} newCardValues={newCardValues} />
     </div>
   );
 }
