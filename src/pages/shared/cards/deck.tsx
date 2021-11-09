@@ -7,27 +7,26 @@ import {
 } from '../../../redux/selectors';
 import { appActions } from '../../../redux/slices/app/app-slice';
 import { AppDispatch } from '../../../redux/store';
-import { thunks } from '../../../redux/thunks/thunks';
+import { scoreIssueThunk } from '../../../redux/thunks';
 import { IRequestResult, TGameStatus } from '../../../redux/types';
 import { TCardScore } from '../../../redux/types/card';
 import {
   InfoMessage,
   TInfoMessageType,
 } from '../../../redux/types/info-message';
-import PlayCard from './card';
-import CardAdd from './card-add';
+import PlayCard from './card/card';
+import CardAdd from './card-add/card-add';
 import styles from './deck.module.scss';
 
-function Deck(): JSX.Element {
+export default function Deck(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
+  const [selectedCard, setSelectedCard] = useState<TCardScore>(-1);
+  const gameSettings = useSelector(gameSettingsSelectors.selectSettings);
   const { cardValues } = useSelector(gameSettingsSelectors.selectSettings);
   const gameId = useSelector(gameSelectors.selectId);
   const currentIssueId = useSelector(gameSelectors.selectCurrentIssueId);
   const currentUser = useSelector(currentUserSelectors.selectCurrentUser);
-  const currentDeck = cardValues;
-  const [selectedCard, setSelectedCard] = useState<TCardScore>(-1);
   const gameStatus = useSelector(gameSelectors.selectStatus);
-  const gameSettings = useSelector(gameSettingsSelectors.selectSettings);
 
   async function handleClick(cardValue: TCardScore) {
     if (
@@ -36,7 +35,7 @@ function Deck(): JSX.Element {
     ) {
       setSelectedCard(cardValue);
       const response = await dispatch(
-        thunks.scoreIssueThunk({
+        scoreIssueThunk({
           issueId: currentIssueId,
           playerId: currentUser.id,
           score: cardValue,
@@ -58,14 +57,14 @@ function Deck(): JSX.Element {
   return (
     <>
       <div className={styles.deck}>
-        {currentDeck.map((cardValue, i) =>
+        {cardValues.map((cardValue, i) =>
           i === 0 ? (
             <PlayCard
               key={cardValue}
               cardValue={cardValue}
               mode="single"
               isSelected={selectedCard === cardValue}
-              handleClick={() => handleClick(cardValue)}
+              onClick={() => handleClick(cardValue)}
             />
           ) : (
             <PlayCard
@@ -73,14 +72,12 @@ function Deck(): JSX.Element {
               cardValue={cardValue}
               mode="deck"
               isSelected={selectedCard === cardValue}
-              handleClick={() => handleClick(cardValue)}
+              onClick={() => handleClick(cardValue)}
             />
           )
         )}
-        {gameStatus === 'lobby' && <CardAdd />}
+        {gameStatus === TGameStatus.lobby && <CardAdd />}
       </div>
     </>
   );
 }
-
-export default Deck;

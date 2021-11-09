@@ -1,27 +1,29 @@
 import React from 'react';
-import { BasePopup } from '../base-popup/base-popup';
+import { BasePopup, IBasePopupProps } from '../base-popup/base-popup';
 import CreateIssueForm, {
   ICreateIssueFormProps,
 } from './create-issue-form/create-issue-form';
 
-interface ICreateIssuePopup extends ICreateIssueFormProps {
-  handleClose: () => void;
-  handleSubmit: () => void;
+interface ICreateIssuePopup extends IBasePopupProps, ICreateIssueFormProps {
+  onClose(): void;
+  onSubmit(): void;
 }
 
 export function CreateIssuePopup({
-  handleClose,
-  handleSubmit,
-  info,
+  onClose,
+  onSubmit,
   setIssueFields,
+  info,
   warning,
+  isShown,
 }: ICreateIssuePopup): JSX.Element {
   return (
     <BasePopup
-      buttonCancelProps={{ onClick: handleClose }}
-      buttonOkProps={{ onClick: handleSubmit }}
-      buttonCancelText="No"
-      buttonOkText="Yes"
+      isShown={isShown}
+      buttonCancelProps={{ onClick: onClose }}
+      buttonOkProps={{ onClick: onSubmit }}
+      buttonCancelText="Cancel"
+      buttonOkText="Create"
     >
       <CreateIssueForm
         info={info}

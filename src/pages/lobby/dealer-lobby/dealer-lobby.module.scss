@@ -3,7 +3,7 @@ $font: var(--second-font);
 $page-width: var(--page-width);
 $page-width-sidebar: var(--page-width-sidebar);
 $button-width: 189px;
-
+$shadow: var(--main-shadow);
 .container {
   display: flex;
   justify-content: center;
@@ -12,8 +12,8 @@ $button-width: 189px;
 .content {
   width: 70%;
   max-width: $page-width;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   padding: 2% 3% 0;
+  box-shadow: $shadow;
 }
 .contentWithSidebar {
   max-width: $page-width-sidebar;
@@ -21,31 +21,26 @@ $button-width: 189px;
 .titleSprint {
   display: flex;
   justify-content: center;
-  margin: 2% 0;
   align-items: baseline;
+  margin: 2% 0;
 }
 .iconIssue {
-  width: 1em;
   display: block;
+  width: 1em;
   margin-left: 2%;
   cursor: pointer;
 }
 
-.titleIssues,
 .titleSettings {
   color: black;
-  font-size: 22px;
-  line-height: 30px;
-  font-weight: 700;
-  font-family: $font;
   margin: 2% 0;
+  font: normal 700 22px/30px $font;
 }
 
 .input {
   display: inline;
-  // width: 230px;
   width: 55%;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: $shadow;
 }
 
 .btnCopy {
@@ -72,42 +67,18 @@ $button-width: 189px;
   background: $btn-background;
 }
 .btnCancel {
-  // background: white;
-  // color: $btn-background;
   border: 1px solid $btn-background;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  text-shadow: $shadow;
 }
 
-.titleLinkTo {
-  font-style: italic;
-  font-weight: normal;
-  font-size: 17px;
-  margin-bottom: 1px;
-}
-
-.containerLinkToLobby {
-  text-align: start;
-}
-.wrapperIssue {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  font-size: 17px;
-}
-.card {
-  position: relative;
-  display: flex;
-  color: gray;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 300px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  padding: 1.5% 1% 0.5%;
-  font-style: var(--second-font);
-  margin-bottom: 2%;
-}
 .containerSettings {
   padding: 2% 0;
+}
+
+@media (max-width: 1000px) {
+  .content {
+    width: 90%;
+  }
 }
 
 @media (max-width: 946px) {
@@ -115,7 +86,6 @@ $button-width: 189px;
     font-size: 16px;
   }
   .titleLinkTo,
-  .titleIssues,
   .titleSettings {
     font-size: 17px;
   }
@@ -125,14 +95,15 @@ $button-width: 189px;
   .btnGameContainer {
     flex-direction: column;
   }
-  .card {
-    width: 200px;
-  }
 }
 
+@media (max-width: 640px) {
+  .content {
+    padding: 0 10px 31px 10px;
+  }
+}
 @media (max-width: 530px) {
   .containerLinkToLobby,
-  .wrapperIssue,
   .settingsList {
     width: 80%;
     text-align: start;
@@ -144,14 +115,8 @@ $button-width: 189px;
   }
 }
 
-@media (max-width: 1000px) {
-  .content {
-    width: 90%;
-  }
-}
-
-@media (max-width: 640px) {
-  .content {
-    padding: 0 10px 31px 10px;
+@media (max-width: 499px) {
+  .contentWithSidebar {
+    display: none;
   }
 }

@@ -27,7 +27,7 @@ function mapDispatchToProps(dispatch: AppDispatch) {
     showErrorMessage: (message: string) =>
       dispatch(
         appActions.addOneInfoMessage(
-          new InfoMessage(message, TInfoMessageType.error)
+          new InfoMessage(message, TInfoMessageType.error).toObject()
         )
       ),
   };

@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import { appActions } from '../../../../redux/slices/app/app-slice';
 import { AppDispatch } from '../../../../redux/store';
-import { thunks } from '../../../../redux/thunks/thunks';
+import { connectThunk, createGameThunk } from '../../../../redux/thunks';
 import {
   ICreateGameRequestResult,
   TUserRole,
@@ -16,8 +16,8 @@ import {
   TInfoMessageType,
 } from '../../../../redux/types/info-message';
 import { IResponse } from '../../../../shared/services/types';
+import ImageLoader from '../../connect-to-lobby/components/avatar/image-loader';
 import FirstName from '../../connect-to-lobby/components/first-name';
-import ImageLoader from '../../connect-to-lobby/components/image-loader';
 import JobPosition from '../../connect-to-lobby/components/job-position';
 import LastName from '../../connect-to-lobby/components/last-name';
 import styles from './form-create-game.module.scss';
@@ -40,6 +40,7 @@ function toBase64String(
 ): string | undefined {
   const canvas = document.createElement('canvas');
   let ctx, base64String;
+
   if (img && fileName !== '') {
     const minSide = Math.min(img.naturalHeight, img.naturalWidth);
     if (img.naturalHeight > minSide) {
@@ -58,23 +59,21 @@ function toBase64String(
   return base64String;
 }
 
-const FormCreateGame = ({}: IFormCreateGameProps): JSX.Element => {
+function FormCreateGame({}: IFormCreateGameProps): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
   const history = useHistory();
-
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>();
-
   const image = useRef<HTMLImageElement>(null);
   const [fileName, setFileName] = useState('');
-  const [filePath, setFilePath] = useState<string>('');
+  const [filePath, setFilePath] = useState('');
   const [playerName, setPlayerName] = useState('NN');
 
   const onConfirmClick = handleSubmit(async (data) => {
-    const connectionResponse = await dispatch(thunks.connectThunk());
+    const connectionResponse = await dispatch(connectThunk());
     const connectionPayload = connectionResponse.payload as IResponse;
     if (connectionPayload.message) {
       dispatch(
@@ -101,7 +100,7 @@ const FormCreateGame = ({}: IFormCreateGameProps): JSX.Element => {
     });
 
     const response = await dispatch(
-      thunks.createGameThunk({ dealerInfo: currentUser })
+      createGameThunk({ dealerInfo: currentUser })
     );
     const payload = response.payload as Partial<ICreateGameRequestResult>;
     if (payload.message) {
@@ -142,7 +141,7 @@ const FormCreateGame = ({}: IFormCreateGameProps): JSX.Element => {
           <HeadingText text="Create game" />
         </Row>
         <FirstName
-          handleChangeInput={handleChangeInput}
+          onChange={handleChangeInput}
           reg={{
             ...register('firstName', {
               validate: {
@@ -155,7 +154,7 @@ const FormCreateGame = ({}: IFormCreateGameProps): JSX.Element => {
           errors={{ ...errors }}
         />
         <LastName
-          handleChangeInput={handleChangeInput}
+          onChange={handleChangeInput}
           reg={{ ...register('lastName') }}
         />
         <JobPosition reg={{ ...register('jobPosition') }} />
@@ -170,6 +169,6 @@ const FormCreateGame = ({}: IFormCreateGameProps): JSX.Element => {
       </Container>
     </Form>
   );
-};
+}
 
 export default FormCreateGame;

@@ -1,0 +1,76 @@
+$shadow: var(--second-shadow);
+$bg-blue: var(--bg-blue);
+$second-font: var(--second-font);
+$active-color: var(--bg-light-green);
+
+.issueCard {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 18px 24px 18px 18px;
+  font-size: 24px;
+  box-shadow: $shadow;
+  cursor: pointer;
+}
+
+.main {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 18px 24px 18px 18px;
+  box-shadow: $shadow;
+  font-family: var(--second-font);
+}
+
+.name {
+  position: relative;
+  z-index: 1;
+  width: 70%;
+  font-size: 1em;
+  margin-bottom: 0;
+  text-align: start;
+  overflow-x: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.current {
+  background: $active-color;
+}
+
+@media (max-width: 950px) {
+  .iconEdit {
+    width: 17px;
+    height: 17px;
+  }
+  .iconDelete {
+    width: 15px;
+    height: 17px;
+  }
+}
+
+@media (max-width: 700px) {
+  .iconEdit {
+    width: 14px;
+    height: 14px;
+  }
+  .iconDelete {
+    width: 11px;
+    height: 14px;
+  }
+}
+
+@media (max-width: 640px) {
+  .issueCard {
+    padding-right: 0.7em;
+  }
+}
+
+@media (max-width: 530px) {
+  .iconDelete,
+  .iconEdit {
+    transform: initial;
+  }
+}

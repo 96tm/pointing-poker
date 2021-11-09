@@ -1,19 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import './index.scss';
 import App from './pages/app';
 import { store } from './redux/store';
-import './shared/assets/css/base.scss';
+import ErrorBoundary from './pages/error-boundary';
 import { gameService } from './shared/services/game-service/game-service';
 import * as serviceWorker from './shared/serviceWorker';
+import { BrowserRouter as Router } from 'react-router-dom';
+import './shared/assets/css/base.scss';
 
 gameService.init();
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <ErrorBoundary>
+        <Router>
+          <App />
+        </Router>
+      </ErrorBoundary>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

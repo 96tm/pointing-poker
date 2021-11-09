@@ -1,0 +1,73 @@
+$font: var(--second-font);
+$bg: var(--bg-blue);
+$border-color: var(--border-button-blue);
+$shadow: var(--main-shadow);
+
+.fieldWrapper {
+  position: relative;
+  width: 100%;
+  margin: 15px 0;
+  text-align: center;
+}
+
+.fieldWrapper {
+  .picker {
+    width: 40%;
+    margin: 0;
+    padding-top: 5px;
+    font: normal bold 24px/30px $font;
+    text-align: center;
+    color: #ffffff;
+    text-shadow: $shadow;
+    background: $bg;
+    border: 1px solid $border-color;
+    border-radius: 0px 3px 3px 0px;
+    cursor: pointer;
+    &:hover {
+      color: #ffffff;
+      background-color: #0b5ed7;
+      border-color: #0a58ca;
+    }
+  }
+}
+
+.fileField {
+  position: absolute;
+  width: 100%;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.placeholder {
+  display: flex;
+  align-items: center;
+  font: normal 300 20px/28px $font;
+  text-align: center;
+  color: #000000;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  text-align: start;
+  font: normal bold 24px/28px $font;
+  color: #000000;
+}
+
+@media (max-width: 400px) {
+  .fieldWrapper {
+    .picker {
+      width: 100%;
+      margin: 0 !important;
+      border-top-left-radius: initial;
+      border-top-right-radius: initial;
+      border-bottom-left-radius: 5px !important;
+    }
+    .placeholder {
+      width: 100%;
+      border-top-right-radius: 5px !important;
+      border-bottom-left-radius: initial;
+      border-bottom-right-radius: initial;
+    }
+  }
+}

@@ -10,8 +10,6 @@ export default function playerLeft({
   firstName,
   lastName,
 }: ILeaveGameResponseWS): void {
-  console.log('left');
-
   const currentUser = store.getState().currentUser;
   if (currentUser.id === playerId) {
     store.dispatch(gameActions.changeStatus(TGameStatus.inactive));

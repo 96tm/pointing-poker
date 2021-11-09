@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 import { gameSelectors } from '../../../redux/selectors';
 import { gamePageActions } from '../../../redux/slices/game-page/game-page';
 import { lobbyPageActions } from '../../../redux/slices/lobby-page/lobby-page';
@@ -44,14 +45,14 @@ const Header = (): JSX.Element => {
 
   return (
     <header className={styles.header} data-testid="header">
-      <a href="/">
+      <Link to="/">
         <img
           src={logo}
           className={styles.logo}
           alt="logo"
           title="Go to start page"
         />
-      </a>
+      </Link>
       {gameStatus !== TGameStatus.inactive && generateHeaderIcon()}
     </header>
   );

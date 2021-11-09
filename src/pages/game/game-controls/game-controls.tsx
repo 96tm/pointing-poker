@@ -8,7 +8,14 @@ import {
 import { appActions } from '../../../redux/slices/app/app-slice';
 import { gameActions } from '../../../redux/slices/game/game-slice';
 import { AppDispatch } from '../../../redux/store';
-import { thunks } from '../../../redux/thunks/thunks';
+import {
+  leaveGameThunk,
+  getNextIssueThunk,
+  startRoundThunk,
+  finishRoundThunk,
+  cancelGameThunk,
+  finishGameThunk,
+} from '../../../redux/thunks';
 import { IRequestResult, TGameStatus, TUserRole } from '../../../redux/types';
 import {
   InfoMessage,
@@ -36,7 +43,7 @@ export default function GameControls({
 
   const handleExit = async () => {
     const response = await dispatch(
-      thunks.leaveGameThunk({ playerId: currentUser.id, gameId })
+      leaveGameThunk({ playerId: currentUser.id, gameId })
     );
     const payload = response.payload as Partial<IRequestResult>;
     if (payload.message) {
@@ -51,7 +58,7 @@ export default function GameControls({
 
   const handleNextIssue = async () => {
     dispatch(
-      thunks.getNextIssueThunk({
+      getNextIssueThunk({
         dealerId: currentUser.id,
         gameId,
       })
@@ -61,7 +68,7 @@ export default function GameControls({
   const handleStart = async () => {
     if (currentIssue) {
       const response = await dispatch(
-        thunks.startRoundThunk({
+        startRoundThunk({
           dealerId: currentUser.id,
           issueId: currentIssue.id,
           gameId,
@@ -81,28 +88,19 @@ export default function GameControls({
 
   const handleRestart = async () => {
     if (currentIssue) {
-      const response = dispatch(
+      dispatch(
         gameActions.updateIssue({
           issueId: currentIssue.id,
           updatedIssue: { lastRoundResult: {} },
         })
       );
-      const payload = response.payload as Partial<IRequestResult>;
-      if (payload.message) {
-        dispatch(
-          appActions.addOneInfoMessage(
-            new InfoMessage(payload.message, TInfoMessageType.error).toObject()
-          )
-        );
-        return;
-      }
-      handleStart();
+      await handleStart();
     }
   };
 
   const handleFinishRound = async () => {
     const response = await dispatch(
-      thunks.finishRoundThunk({ dealerId: currentUser.id, gameId })
+      finishRoundThunk({ dealerId: currentUser.id, gameId })
     );
     const payload = response.payload as Partial<IRequestResult>;
     if (payload.message) {
@@ -117,7 +115,7 @@ export default function GameControls({
 
   const handleCancelGame = async () => {
     const response = await dispatch(
-      thunks.cancelGameThunk({ dealerId: currentUser.id, gameId })
+      cancelGameThunk({ dealerId: currentUser.id, gameId })
     );
     const payload = response.payload as Partial<IRequestResult>;
     if (payload.message) {
@@ -133,7 +131,7 @@ export default function GameControls({
   const handleFinishGame = async () => {
     setIsGameFinished(true);
     const response = await dispatch(
-      thunks.finishGameThunk({ dealerId: currentUser.id, gameId })
+      finishGameThunk({ dealerId: currentUser.id, gameId })
     );
     const payload = response.payload as Partial<IRequestResult>;
     if (payload.message) {
@@ -170,16 +168,6 @@ export default function GameControls({
               </BaseButton>
             </div>
             <div className={styles.roundButtons}>
-              {(!currentIssue ||
-                !Object.keys(currentIssue.lastRoundResult).length) && (
-                <ButtonBlue
-                  disabled={!currentIssue || gameStatus !== TGameStatus.started}
-                  className={styles.button}
-                  onClick={handleStart}
-                >
-                  Start round
-                </ButtonBlue>
-              )}
               {currentIssue &&
                 Object.keys(currentIssue.lastRoundResult).length > 0 && (
                   <ButtonBlue

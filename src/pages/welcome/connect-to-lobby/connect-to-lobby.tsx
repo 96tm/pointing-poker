@@ -1,32 +1,32 @@
 import React from 'react';
 import { BasePopup } from '../../shared/base-popup/base-popup';
-import FormConnectToLobby from './components/form-connect-to-lobby';
+import FormConnectToLobby from './components/form/form-connect-to-lobby';
 
 interface IConnectToLobbyProps {
   gameId: string;
-  handleCancelClick: () => void;
+  isShown: boolean;
+  onCancel: () => void;
 }
 
-const ConnectToLobby = ({
-  handleCancelClick,
+function ConnectToLobby({
+  onCancel,
   gameId,
-}: IConnectToLobbyProps): JSX.Element => {
+  isShown,
+}: IConnectToLobbyProps): JSX.Element {
   return (
     <BasePopup
+      isShown={isShown}
       buttonOkText="Confirm"
       buttonCancelText="Cancel"
-      buttonCancelProps={{ onClick: handleCancelClick }}
+      buttonCancelProps={{ onClick: onCancel }}
       buttonOkProps={{
         form: 'textId',
         type: 'submit',
       }}
     >
-      <FormConnectToLobby
-        gameId={gameId}
-        handleCancelClick={handleCancelClick}
-      />
+      <FormConnectToLobby gameId={gameId} onCancel={onCancel} />
     </BasePopup>
   );
-};
+}
 
 export default ConnectToLobby;

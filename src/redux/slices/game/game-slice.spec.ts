@@ -4,8 +4,16 @@ import { Game, IGame, TGameStatus, Issue, Message, User } from '../../types';
 
 describe('game slice', () => {
   const initialState: IGame = new Game();
-  const message1 = new Message({ id: '', userId: 'userId1', message: 'text' });
-  const message2 = new Message({ id: '', userId: 'userId2', message: 'text' });
+  const message1 = new Message({
+    id: '',
+    userId: 'userId1',
+    message: 'text',
+  }).toObject();
+  const message2 = new Message({
+    id: '',
+    userId: 'userId2',
+    message: 'text',
+  }).toObject();
   const player1 = new User({ id: 'player1' });
   const player2 = new User({ id: 'player2' });
   const issue1 = new Issue({

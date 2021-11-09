@@ -1,6 +1,6 @@
 import React from 'react';
 import { TCardScore } from '../../../redux/types';
-import PlayCard from '../cards/card';
+import PlayCard from '../cards/card/card';
 import styles from './issue-score-statistics.module.scss';
 
 interface IIssueScoreStatisticsProps {
@@ -34,7 +34,7 @@ export default function IssueScoreStatistics({
         cardValue={score as TCardScore}
         mode="single"
         isSelected={false}
-        handleClick={() => undefined}
+        onClick={() => undefined}
       />
       <div className={styles.percentageCard}>{`${formatPercentage(
         percentage
