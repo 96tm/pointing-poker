@@ -1,7 +1,7 @@
 import React, { FormEvent, SyntheticEvent, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../../../../redux/store';
-import { thunks } from '../../../../redux/thunks/thunks';
+import { updateIssueThunk } from '../../../../redux/thunks';
 import {
   currentUserSelectors,
   gameSelectors,
@@ -32,7 +32,7 @@ export default function IssueScoreForm({
     const numberValue = Number(newValue);
     if (numberValue && numberValue > 0) {
       const response = await dispatch(
-        thunks.updateIssueThunk({
+        updateIssueThunk({
           dealerId: currentUser.id,
           gameId,
           updatedIssue: {

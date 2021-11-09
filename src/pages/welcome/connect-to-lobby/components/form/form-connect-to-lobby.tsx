@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { appActions } from '../../../../../redux/slices/app/app-slice';
 import { AppDispatch } from '../../../../../redux/store';
-import { thunks } from '../../../../../redux/thunks/thunks';
+import { addPlayerThunk } from '../../../../../redux/thunks';
 import {
   IClientAddPlayerResult,
   TUserRole,
@@ -24,7 +24,7 @@ import styles from '../../connect-to-lobby.module.scss';
 
 interface IFormConnectToLobby {
   gameId: string;
-  handleCancelClick: () => void;
+  onCancel: () => void;
 }
 
 export type FormData = {
@@ -60,7 +60,7 @@ function toBase64String(
 }
 
 const FormConnectToLobby = ({
-  handleCancelClick,
+  onCancel,
   gameId,
 }: IFormConnectToLobby): JSX.Element => {
   const dispatch = useDispatch<AppDispatch>();
@@ -87,9 +87,9 @@ const FormConnectToLobby = ({
       jobPosition: data.jobPosition,
       image: base64String,
     });
-    handleCancelClick();
+    onCancel();
     const response = await dispatch(
-      thunks.addPlayerThunk({ addedPlayer: currentUser, gameId })
+      addPlayerThunk({ addedPlayer: currentUser, gameId })
     );
     const { message } = response.payload as IClientAddPlayerResult;
     if (message) {
@@ -129,7 +129,7 @@ const FormConnectToLobby = ({
           <Switcher reg={{ ...register('isObserver') }} />
         </Row>
         <FirstName
-          handleChangeInput={handleChangeInput}
+          onChange={handleChangeInput}
           reg={{
             ...register('firstName', {
               validate: {
@@ -142,7 +142,7 @@ const FormConnectToLobby = ({
           errors={{ ...errors }}
         />
         <LastName
-          handleChangeInput={handleChangeInput}
+          onChange={handleChangeInput}
           reg={{ ...register('lastName') }}
         />
         <JobPosition reg={{ ...register('jobPosition') }} />

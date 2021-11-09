@@ -4,12 +4,12 @@ import styles from '../settings.module.scss';
 
 interface IScoreSettingProps {
   cardType: TCardType;
-  handleChangeCardType(event: SyntheticEvent): void;
+  onChange(event: SyntheticEvent): void;
 }
 
 export default function ScoreSetting({
   cardType,
-  handleChangeCardType,
+  onChange,
 }: IScoreSettingProps): JSX.Element {
   return (
     <div className={styles.itemSettings}>
@@ -20,7 +20,7 @@ export default function ScoreSetting({
         id="score"
         className={styles.select}
         value={cardType}
-        onChange={handleChangeCardType}
+        onChange={onChange}
       >
         <option>{TCardType.custom}</option>
         <option>{TCardType.fib}</option>

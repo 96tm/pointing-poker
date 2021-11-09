@@ -5,13 +5,13 @@ import styles from '../settings.module.scss';
 interface ICustomSettingProps {
   inputId: string;
   inputLabel: string;
-  handleChange(): void;
+  onChange(): void;
 }
 
 export default function CustomSetting({
   inputId,
   inputLabel,
-  handleChange,
+  onChange,
 }: ICustomSettingProps): JSX.Element {
   return (
     <div className={styles.itemSettings}>
@@ -24,7 +24,7 @@ export default function CustomSetting({
             className={`${styles.switcher} form-check-input`}
             type="checkbox"
             id={inputId}
-            onChange={handleChange}
+            onChange={onChange}
           />
         </div>
       </Col>

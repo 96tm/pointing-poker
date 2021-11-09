@@ -5,11 +5,11 @@ import FormConnectToLobby from './components/form/form-connect-to-lobby';
 interface IConnectToLobbyProps {
   gameId: string;
   isShown: boolean;
-  handleCancelClick: () => void;
+  onCancel: () => void;
 }
 
 function ConnectToLobby({
-  handleCancelClick,
+  onCancel,
   gameId,
   isShown,
 }: IConnectToLobbyProps): JSX.Element {
@@ -18,16 +18,13 @@ function ConnectToLobby({
       isShown={isShown}
       buttonOkText="Confirm"
       buttonCancelText="Cancel"
-      buttonCancelProps={{ onClick: handleCancelClick }}
+      buttonCancelProps={{ onClick: onCancel }}
       buttonOkProps={{
         form: 'textId',
         type: 'submit',
       }}
     >
-      <FormConnectToLobby
-        gameId={gameId}
-        handleCancelClick={handleCancelClick}
-      />
+      <FormConnectToLobby gameId={gameId} onCancel={onCancel} />
     </BasePopup>
   );
 }

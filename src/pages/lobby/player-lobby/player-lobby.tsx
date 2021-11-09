@@ -9,7 +9,7 @@ import {
 import { lobbyPageSelectors } from '../../../redux/selectors/lobby-page-selectors';
 import { appActions } from '../../../redux/slices/app/app-slice';
 import { AppDispatch } from '../../../redux/store';
-import { thunks } from '../../../redux/thunks/thunks';
+import { leaveGameThunk } from '../../../redux/thunks';
 import { IRequestResult, TGameStatus } from '../../../redux/types';
 import {
   InfoMessage,
@@ -56,7 +56,7 @@ export default function PlayerLobby(): JSX.Element {
 
   const handleExit = async () => {
     const response = await dispatch(
-      thunks.leaveGameThunk({ playerId: currentUser.id, gameId })
+      leaveGameThunk({ playerId: currentUser.id, gameId })
     );
     const payload = response.payload as Partial<IRequestResult>;
     if (payload.message) {

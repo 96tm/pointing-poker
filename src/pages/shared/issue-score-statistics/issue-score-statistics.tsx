@@ -34,7 +34,7 @@ export default function IssueScoreStatistics({
         cardValue={score as TCardScore}
         mode="single"
         isSelected={false}
-        handleClick={() => undefined}
+        onClick={() => undefined}
       />
       <div className={styles.percentageCard}>{`${formatPercentage(
         percentage

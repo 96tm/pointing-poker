@@ -14,16 +14,16 @@ interface IPopupChangeCardProps {
   >;
   isShown: boolean;
   cardValues: TCardScore[];
-  handleClose(): void;
-  handleSubmit(): void;
-  handleDelete(): void;
+  onClose(): void;
+  onSubmit(): void;
+  onDelete(): void;
 }
 
 export default function PopupChangeCard({
   isShown,
-  handleClose,
-  handleDelete,
-  handleSubmit,
+  onClose,
+  onDelete,
+  onSubmit,
   setNewValue,
   cardValues,
 }: IPopupChangeCardProps): JSX.Element {
@@ -35,10 +35,10 @@ export default function PopupChangeCard({
     <BasePopup
       isShown={isShown}
       buttonCancelProps={{
-        onClick: handleDelete,
+        onClick: onDelete,
         className: styles.btnDelete,
       }}
-      buttonOkProps={{ onClick: handleSubmit }}
+      buttonOkProps={{ onClick: onSubmit }}
       buttonCancelText="Delete"
       buttonOkText="Add"
     >
@@ -47,13 +47,13 @@ export default function PopupChangeCard({
         alt="Close"
         title="Close"
         className={styles.iconClose}
-        onClick={handleClose}
+        onClick={onClose}
       />
       <div className={styles.container}>
         <h4 className={styles.popupTitle}>Update Card</h4>
         <PopupForm
           newCardValues={newCardValues}
-          handleChange={(
+          onChange={(
             event: ChangeEvent<HTMLInputElement | HTMLSelectElement>
           ) => setNewValue(+event.target.value)}
         />

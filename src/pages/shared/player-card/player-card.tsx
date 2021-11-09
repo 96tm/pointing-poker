@@ -56,12 +56,12 @@ export default function PlayerCard({
       <PlayerKickPopup
         isShown={isPlayerKickPopupShown}
         playerToKick={user}
-        handleCloseKickPopup={handleCloseKickPopup}
+        onClose={handleCloseKickPopup}
       />
       <DealerKickPopup
         isShown={isDealerKickPopupShown}
         playerToKick={user}
-        handleCloseKickPopup={handleCloseKickPopup}
+        onClose={handleCloseKickPopup}
       />
       <div
         className={styles.avatarContainer}

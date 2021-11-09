@@ -3,7 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { currentUserSelectors, gameSelectors } from '../../../redux/selectors';
 import { appActions } from '../../../redux/slices/app/app-slice';
 import { AppDispatch } from '../../../redux/store';
-import { thunks } from '../../../redux/thunks/thunks';
+import {
+  changeCurrentIssueThunk,
+  updateIssueThunk,
+} from '../../../redux/thunks';
 import {
   IIssue,
   IRequestResult,
@@ -54,7 +57,7 @@ export default function IssueCard({
       gameStatus === TGameStatus.started
     ) {
       const response = await dispatch(
-        thunks.changeCurrentIssueThunk({
+        changeCurrentIssueThunk({
           dealerId: currentUser.id,
           gameId,
           issueId: issue.id,
@@ -74,7 +77,7 @@ export default function IssueCard({
 
   const handleUpdateIssue = async () => {
     const response = await dispatch(
-      thunks.updateIssueThunk({
+      updateIssueThunk({
         dealerId: dealer.id,
         updatedIssue: issueFields,
         gameId,

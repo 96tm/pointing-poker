@@ -9,7 +9,7 @@ import {
 } from '../../redux/selectors';
 import { entryRequestSelectors } from '../../redux/selectors/entry-request-selectors';
 import { AppDispatch } from '../../redux/store';
-import { thunks } from '../../redux/thunks/thunks';
+import { startRoundThunk } from '../../redux/thunks';
 import { IUser, TGameStatus, TUserRole } from '../../redux/types';
 import Deck from '../shared/cards/deck';
 import DealerSection from '../shared/dealer-section/dealer-section';
@@ -50,7 +50,7 @@ export function GamePage(): JSX.Element {
     (async () => {
       if (currentIssue && currentUser.id === dealer.id) {
         await dispatch(
-          thunks.startRoundThunk({
+          startRoundThunk({
             dealerId: currentUser.id,
             issueId: currentIssue.id,
             gameId,

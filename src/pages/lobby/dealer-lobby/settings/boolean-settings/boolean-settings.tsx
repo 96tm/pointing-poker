@@ -82,7 +82,7 @@ export default function BooleanSettings(): JSX.Element {
           key={setting.inputId}
           inputLabel={setting.inputLabel}
           inputId={setting.inputId}
-          handleChange={setting.handleChange}
+          onChange={setting.handleChange}
         />
       ))}
     </>

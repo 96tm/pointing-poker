@@ -4,7 +4,7 @@ import { gameSelectors } from '../../../redux/selectors';
 import { appActions } from '../../../redux/slices/app/app-slice';
 import { entryRequestsActions } from '../../../redux/slices/entry-requests/entry-requests';
 import { AppDispatch } from '../../../redux/store';
-import { thunks } from '../../../redux/thunks/thunks';
+import { admitPlayerThunk, rejectPlayerThunk } from '../../../redux/thunks';
 import { IRequestResult, IUser, User } from '../../../redux/types';
 import {
   InfoMessage,
@@ -23,7 +23,7 @@ export default function EntryRequestPopup({
   const gameId = useSelector(gameSelectors.selectId);
 
   const admitEntryRequest = async () => {
-    const response = await dispatch(thunks.admitPlayerThunk({ gameId }));
+    const response = await dispatch(admitPlayerThunk({ gameId }));
     dispatch(entryRequestsActions.popEntryRequest());
     const payload = response.payload as Partial<IRequestResult>;
     if (payload.message) {
@@ -37,7 +37,7 @@ export default function EntryRequestPopup({
   };
 
   const rejectEntryRequest = async () => {
-    const response = await dispatch(thunks.rejectPlayerThunk({ gameId }));
+    const response = await dispatch(rejectPlayerThunk({ gameId }));
     dispatch(entryRequestsActions.popEntryRequest());
     const payload = response.payload as Partial<IRequestResult>;
     if (payload.message) {

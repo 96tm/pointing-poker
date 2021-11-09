@@ -9,7 +9,7 @@ import {
 } from '../../../redux/selectors';
 import { appActions } from '../../../redux/slices/app/app-slice';
 import { AppDispatch } from '../../../redux/store';
-import { thunks } from '../../../redux/thunks/thunks';
+import { cancelGameThunk, startGameThunk } from '../../../redux/thunks';
 import { IRequestResult, TGameStatus } from '../../../redux/types';
 import {
   InfoMessage,
@@ -54,7 +54,7 @@ export default function DealerLobby(): JSX.Element {
 
   const handleCancel = async () => {
     const response = await dispatch(
-      thunks.cancelGameThunk({ dealerId: dealer.id, gameId })
+      cancelGameThunk({ dealerId: dealer.id, gameId })
     );
     const payload = response.payload as Partial<IRequestResult>;
     if (payload.message) {
@@ -69,7 +69,7 @@ export default function DealerLobby(): JSX.Element {
 
   const handleStart = async () => {
     const response = await dispatch(
-      thunks.startGameThunk({
+      startGameThunk({
         settings: gameSettings,
         gameId,
         dealerId: dealer.id,

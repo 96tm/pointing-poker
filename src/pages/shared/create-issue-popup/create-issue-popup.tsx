@@ -5,13 +5,13 @@ import CreateIssueForm, {
 } from './create-issue-form/create-issue-form';
 
 interface ICreateIssuePopup extends IBasePopupProps, ICreateIssueFormProps {
-  handleClose(): void;
-  handleSubmit(): void;
+  onClose(): void;
+  onSubmit(): void;
 }
 
 export function CreateIssuePopup({
-  handleClose,
-  handleSubmit,
+  onClose,
+  onSubmit,
   setIssueFields,
   info,
   warning,
@@ -20,8 +20,8 @@ export function CreateIssuePopup({
   return (
     <BasePopup
       isShown={isShown}
-      buttonCancelProps={{ onClick: handleClose }}
-      buttonOkProps={{ onClick: handleSubmit }}
+      buttonCancelProps={{ onClick: onClose }}
+      buttonOkProps={{ onClick: onSubmit }}
       buttonCancelText="Cancel"
       buttonOkText="Create"
     >

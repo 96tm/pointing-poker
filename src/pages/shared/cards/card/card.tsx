@@ -19,7 +19,7 @@ interface IPlayCardProps {
   mode: string;
   cardValue: TCardScore;
   isSelected: boolean;
-  handleClick(): void;
+  onClick(): void;
   customClass?: string;
 }
 
@@ -27,7 +27,7 @@ export default function PlayCard({
   mode,
   cardValue,
   isSelected,
-  handleClick,
+  onClick,
   customClass,
 }: React.PropsWithChildren<IPlayCardProps>): JSX.Element {
   const dispatch = useDispatch();
@@ -67,7 +67,7 @@ export default function PlayCard({
         className={`${styles.playCard} ${customClass || ''}`}
         data-rank={newValue}
         data-mode={mode}
-        onClick={handleClick}
+        onClick={onClick}
       >
         {gameStatus === TGameStatus.lobby && typeof newValue === 'number' && (
           <img
@@ -111,9 +111,9 @@ export default function PlayCard({
       <PopupChangeCard
         isShown={isUpdatePopupShown}
         setNewValue={setNewValue}
-        handleClose={handleClose}
-        handleDelete={handleDelete}
-        handleSubmit={handleSubmit}
+        onClose={handleClose}
+        onDelete={handleDelete}
+        onSubmit={handleSubmit}
         cardValues={cardValues}
       />
     </>

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { currentUserSelectors, gameSelectors } from '../../../redux/selectors';
 import { appActions } from '../../../redux/slices/app/app-slice';
 import { AppDispatch } from '../../../redux/store';
-import { thunks } from '../../../redux/thunks/thunks';
+import { createIssueThunk } from '../../../redux/thunks';
 import { IIssue, IRequestResult, Issue } from '../../../redux/types';
 import {
   InfoMessage,
@@ -40,7 +40,7 @@ export default function CreateIssueCard({
 
   const handleCreateIssue = async () => {
     const response = await dispatch(
-      thunks.createIssueThunk({
+      createIssueThunk({
         dealerId: dealer.id,
         addedIssue: issueFields,
         gameId,
@@ -66,7 +66,7 @@ export default function CreateIssueCard({
       const promises: Array<Promise<PayloadAction<IRequestResult>>> =
         issues.map((item: IIssue) =>
           dispatch(
-            thunks.createIssueThunk({
+            createIssueThunk({
               dealerId: dealer.id,
               addedIssue: item,
               gameId,
@@ -166,8 +166,8 @@ export default function CreateIssueCard({
       </span>
       <CreateIssuePopup
         isShown={showPopup}
-        handleClose={handleClose}
-        handleSubmit={handleSubmit}
+        onClose={handleClose}
+        onSubmit={handleSubmit}
         info={issueFields}
         setIssueFields={setIssueFields}
         warning={warning}

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { currentUserSelectors, gameSelectors } from '../../../redux/selectors';
 import { appActions } from '../../../redux/slices/app/app-slice';
 import { AppDispatch } from '../../../redux/store';
-import { thunks } from '../../../redux/thunks/thunks';
+import { voteToKickThunk } from '../../../redux/thunks';
 import { IRequestResult, User } from '../../../redux/types';
 import {
   InfoMessage,
@@ -34,7 +34,7 @@ export default function VotingPopup({
 
   const acceptKickVote = async () => {
     const response = await dispatch(
-      thunks.voteToKickThunk({
+      voteToKickThunk({
         votingPlayerId: currentUser.id,
         gameId,
         kickedPlayerId: votingKick.kickedPlayerId,
@@ -55,7 +55,7 @@ export default function VotingPopup({
 
   const declineKickVote = async () => {
     const response = await dispatch(
-      thunks.voteToKickThunk({
+      voteToKickThunk({
         votingPlayerId: currentUser.id,
         gameId,
         kickedPlayerId: votingKick.kickedPlayerId,
