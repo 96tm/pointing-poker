@@ -1,0 +1,135 @@
+$main-font: var(--main-font);
+$second-font: var(--second-font);
+$shadow: var(--main-shadow);
+$bg-blue: var(--bg-blue);
+$error-color: var(--error-color);
+$button-border: #496a81;
+
+.connect {
+  display: flex;
+  width: 100%;
+  max-width: 876px;
+}
+
+.title {
+  font: normal bold 64px/75px $main-font;
+  color: #ff0000;
+}
+
+.rowTitle {
+  margin-bottom: 50px;
+}
+
+.observerLabel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 200px;
+  margin-top: 15px;
+  font: normal bold 24px/30px $second-font;
+  color: #000000;
+}
+
+.observer {
+  position: relative;
+  right: 50px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  word-break: normal;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  text-align: start;
+  font: normal bold 24px/28px $main-font;
+  color: #000000;
+}
+
+.placeholder {
+  display: flex;
+  align-items: center;
+  font: normal 300 20px/28px $main-font;
+  text-align: center;
+  color: #000000;
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  background: #60dabf;
+  box-shadow: inset $shadow;
+  font: normal bold 48px/100px $main-font;
+  text-align: center;
+  color: #ffffff;
+  text-shadow: $shadow;
+}
+
+.left,
+.right {
+  text-align: start;
+}
+.left {
+  width: 100%;
+}
+.left.left {
+  width: 100%;
+}
+
+.confirm {
+  width: 189px;
+  height: 60px;
+  background: $bg-blue;
+  border: 1px solid $button-border;
+  border-radius: 3px;
+  font: normal bold 24px/48px $second-font;
+  text-align: center;
+  color: #ffffff;
+  text-shadow: $shadow;
+}
+
+.cancel {
+  width: 189px;
+  height: 60px;
+  background: #ffffff;
+  border: 1px solid $button-border;
+  border-radius: 3px;
+  font: normal bold 24px/48px $second-font;
+  text-align: center;
+  color: $bg-blue;
+  text-shadow: $shadow;
+}
+
+.tipError {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  white-space: nowrap;
+  font-size: 16px;
+  text-align: start;
+  color: $error-color;
+  padding-bottom: 3%;
+}
+
+@media (max-width: 1000px) {
+  .title {
+    font-size: 40px;
+  }
+}
+
+@media (max-width: 700px) {
+  .title {
+    font-size: 24px;
+  }
+  .label {
+    font-size: 18px;
+    font-weight: 500;
+  }
+}

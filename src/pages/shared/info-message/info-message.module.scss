@@ -1,0 +1,76 @@
+$max-z-index: var(--max-z-index);
+$message-bg: #d1ecf1;
+$message-border: #bee5eb;
+$message-color: #0c5460;
+$error-bg: #f8d7da;
+$error-border: #f5c6cb;
+$error-color: #721c24;
+$text-dark: rgba(79, 79, 79, 1);
+
+.messageContainer {
+  position: relative;
+  z-index: $max-z-index;
+  animation: message-appear 0.6s ease-out 1;
+}
+.message {
+  position: relative;
+  top: 0;
+  width: 100%;
+  padding: 0.75rem 1.25rem;
+  color: $message-color;
+  background: $message-bg;
+  border: 1px solid $message-border;
+  font-size: 2rem;
+  text-align: center;
+  word-break: break-word;
+}
+.errorMessage {
+  @extend .message;
+  color: $error-color;
+  background: $error-bg;
+  border: 1px solid $error-border;
+}
+.buttonCloseContaienr {
+  position: relative;
+  padding-right: 10px;
+}
+.buttonClose {
+  position: absolute;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+.buttonClose:hover {
+  transform: translateY(-50%) scale(2);
+}
+.buttonClose::before,
+.buttonClose::after {
+  content: '';
+  position: absolute;
+  background: $text-dark;
+  z-index: calc(#{$max-z-index} + 1);
+  width: 50%;
+  height: 3px;
+  left: 50%;
+  top: 50%;
+}
+.buttonClose::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.buttonClose::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+@keyframes message-appear {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: initial;
+  }
+}

@@ -1,0 +1,21 @@
+.issuesList {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  row-gap: 25px;
+  width: 300px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.listItem,
+.createIssueCardContainer {
+  height: 5.5rem;
+}
+
+@media (max-width: 810px) {
+  .issuesList {
+    width: 200px;
+  }
+}

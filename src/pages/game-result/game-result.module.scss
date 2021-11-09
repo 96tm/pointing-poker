@@ -1,0 +1,89 @@
+$font: var(--second-font);
+$shadow: var(--main-shadow);
+$page-width: var(--page-width);
+
+.container {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+}
+.content {
+  position: relative;
+  width: 70%;
+  max-width: $page-width;
+  padding: 0 38px 31px 38px;
+  box-shadow: $shadow;
+}
+
+.customIssueCard {
+  width: 300px;
+}
+
+.buttonDownload {
+  margin-left: 5px;
+}
+
+.buttonRestart {
+  margin-left: auto;
+}
+
+.headingContainer {
+  display: flex;
+  justify-content: flex-start;
+  margin: 40px 0 50px 12vw;
+}
+
+.issueStatisticBlock {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 20px;
+  row-gap: 40px;
+  margin: 20px 0 30px 0;
+}
+
+.setOfIssues {
+  margin: 0 46px;
+}
+
+.groupedVotes {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+.percentageCard {
+  font-family: $font;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+@media (max-width: 1000px) {
+  .content {
+    width: 90%;
+  }
+}
+
+@media (max-width: 640px) {
+  .content {
+    padding: 0 10px 31px 10px;
+  }
+}
+
+@media (max-width: 420px) {
+  .customIssueCard {
+    width: 200px;
+  }
+  .buttonDownload {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+  }
+  .buttonRestart {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+  }
+  .headingContainer {
+    margin-top: 50px;
+  }
+}

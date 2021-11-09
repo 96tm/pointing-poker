@@ -1,0 +1,38 @@
+$active-color: var(--bg-light-green);
+$font: var(--main-font);
+$shadow: var(--main-shadow);
+
+.issueCard {
+  display: flex;
+  position: relative;
+  padding: 18px 24px 18px 18px;
+  box-shadow: $shadow;
+}
+
+.title {
+  width: 90%;
+  text-align: left;
+  font: normal 300 24px $font;
+}
+
+.priority {
+  font: normal 300 10px $font;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.buttonAddContainer {
+  position: relative;
+  margin-left: auto;
+}
+
+@media (max-width: 640px) {
+  .issueCard {
+    padding-right: 0;
+  }
+  .title {
+    font-size: 18px;
+  }
+}

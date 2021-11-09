@@ -1,0 +1,33 @@
+.gameControls {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  row-gap: 20px;
+}
+
+.gameButtons {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.roundButtons {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 10px;
+}
+
+.button {
+  width: 189px;
+}
+
+@media (max-width: 730px) {
+  .buttons {
+    margin: 0;
+  }
+}

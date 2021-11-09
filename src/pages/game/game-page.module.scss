@@ -1,0 +1,78 @@
+$page-width: var(--page-width);
+$page-width-sidebar: var(--page-width-sidebar);
+$shadow: var(--main-shadow);
+
+.container {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+}
+.content {
+  width: 70%;
+  max-width: $page-width;
+  padding: 0 38px 31px 38px;
+  box-shadow: $shadow;
+  .main {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 50px;
+    column-gap: 30px;
+  }
+}
+
+.contentWithSidebar {
+  max-width: $page-width-sidebar;
+}
+
+.heading {
+  padding: 40px 0 45px;
+}
+
+.controls {
+  padding: 20px 0 90px;
+}
+.issues {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.issuesHeading {
+  text-align: left;
+  padding-left: 40px;
+}
+
+.statisticsHeading {
+  text-align: left;
+  padding-left: 40px;
+}
+.statisticsSection {
+  flex: 1;
+  align-self: flex-start;
+  min-width: 300px;
+  overflow-x: scroll;
+  scrollbar-width: none;
+}
+.statisticsSection::-webkit-scrollbar {
+  display: none;
+}
+.deck {
+  padding-top: 40px;
+}
+
+@media (max-width: 1000px) {
+  .content {
+    width: 90%;
+  }
+}
+
+@media (max-width: 640px) {
+  .content {
+    padding: 0 10px 31px 10px;
+  }
+}
+
+@media (max-width: 499px) {
+  .content {
+    display: none;
+  }
+}

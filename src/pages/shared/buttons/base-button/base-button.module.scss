@@ -1,0 +1,12 @@
+$shadow: var(--main-shadow);
+$font: var(--second-font);
+$color: var(--bg-blue);
+$border-color: var(--border-button-blue);
+
+.baseButton.baseButton {
+  background: transparent;
+  box-shadow: $shadow;
+  border: 1px solid $border-color;
+  color: $color;
+  font: normal 700 24px/30px $font;
+}

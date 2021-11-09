@@ -1,0 +1,41 @@
+$z-index: var(--button-z-index);
+$message-bg: #d1ecf1;
+$message-border: #bee5eb;
+$message-color: #0c5460;
+$error-bg: #f8d7da;
+$error-border: #f5c6cb;
+$error-color: #721c24;
+$text-dark: rgba(79, 79, 79, 1);
+
+.buttonAdd {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: none;
+  z-index: 1;
+  cursor: pointer;
+}
+.buttonAdd:hover {
+  transform: translateY(-50%) scale(2);
+}
+.buttonAdd::before,
+.buttonAdd::after {
+  content: '';
+  position: absolute;
+  background: $text-dark;
+  width: 50%;
+  height: 3px;
+  left: 50%;
+  top: 50%;
+  z-index: calc(#{$z-index} + 1);
+}
+.buttonAdd::before {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+.buttonAdd::after {
+  transform: translate(-50%, -50%);
+}

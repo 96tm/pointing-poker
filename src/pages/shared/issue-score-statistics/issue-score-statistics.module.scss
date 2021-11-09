@@ -1,0 +1,21 @@
+.issuesList {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  cursor: grab;
+}
+
+$font: var(--second-font);
+
+.container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+.percentageCard {
+  font-family: $font;
+  font-size: 24px;
+  font-weight: bold;
+}

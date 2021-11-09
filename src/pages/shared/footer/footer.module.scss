@@ -1,0 +1,70 @@
+.footer {
+  background-color: var(--bg-blue);
+  display: flex;
+  padding: 0.3% 1%;
+  justify-content: space-between;
+
+  .rssLogo {
+    max-height: 50px;
+    display: flex;
+    color: white;
+    font-size: 21px;
+    font-weight: bold;
+    text-decoration: none;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .rss {
+    height: 40px;
+    width: 100px;
+  }
+
+  .github {
+    max-width: 45px;
+    max-height: 45px;
+  }
+
+  .team {
+    list-style-type: none;
+    font-size: 12px;
+    text-align: start;
+    align-self: center;
+    width: 130px;
+    padding-left: 2%;
+    margin: 0;
+    line-height: 14px;
+  }
+
+  .member {
+    text-decoration: none;
+    color: gainsboro;
+    cursor: pointer;
+  }
+
+  .container {
+    display: flex;
+  }
+}
+
+@media (max-width: 560px) {
+  .footer {
+    .github {
+      max-width: 35px;
+      max-height: 35px;
+    }
+    .container {
+      align-items: center;
+    }
+    .rss {
+      width: 75px;
+    }
+    .rssLogo {
+      font-size: 18px;
+    }
+    .team {
+      font-size: 9px;
+      line-height: 11px;
+    }
+  }
+}

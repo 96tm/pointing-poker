@@ -1,0 +1,32 @@
+$font: var(--second-font);
+
+.sprintHeading {
+  margin: 0;
+  color: black;
+  font-size: 22px;
+  line-height: 30px;
+  font-weight: 700;
+  font-family: $font;
+}
+
+.issues {
+  font-size: 16px;
+}
+
+@media (max-width: 940px) {
+  .sprintHeading {
+    font-size: 17px;
+  }
+  .issues {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 810px) {
+  .sprintHeading {
+    font-size: 15px;
+  }
+  .issues {
+    font-size: 10px;
+  }
+}

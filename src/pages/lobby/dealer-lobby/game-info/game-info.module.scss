@@ -1,0 +1,71 @@
+$shadow: var(--main-shadow);
+$button-width: 189px;
+$btn-background: var(--bg-blue);
+$font: var(--second-font);
+
+.containerLinkToLobby {
+  text-align: start;
+}
+
+.input {
+  display: inline;
+  width: 55%;
+  box-shadow: $shadow;
+}
+
+.btnCopy {
+  background: $btn-background;
+  width: $button-width;
+  font-weight: 500;
+}
+
+.titleLinkTo {
+  font: normal italic 17px $font;
+  margin-bottom: 1px;
+}
+
+@media (max-width: 946px) {
+  .input {
+    font-size: 16px;
+  }
+  .titleLinkTo,
+  .titleIssues,
+  .titleSettings {
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 820px) {
+  .btnGameContainer {
+    flex-direction: column;
+  }
+  .card {
+    width: 200px;
+  }
+}
+
+@media (max-width: 530px) {
+  .containerLinkToLobby,
+  .wrapperIssue,
+  .settingsList {
+    width: 80%;
+    text-align: start;
+    margin: 0 auto;
+  }
+
+  .btnGameContainer {
+    width: 80%;
+  }
+}
+
+@media (max-width: 1000px) {
+  .content {
+    width: 90%;
+  }
+}
+
+@media (max-width: 640px) {
+  .content {
+    padding: 0 10px 31px 10px;
+  }
+}

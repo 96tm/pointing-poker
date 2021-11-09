@@ -1,0 +1,10 @@
+$z-index: var(--max-z-index);
+
+.infoMessageList {
+  position: fixed;
+  z-index: $z-index;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}

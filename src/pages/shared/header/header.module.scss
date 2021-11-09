@@ -1,0 +1,29 @@
+.header {
+  max-height: 64px;
+  background: linear-gradient(to bottom, var(--bg-blue) 75%, #66999b 25%);
+  display: flex;
+  padding: 1% 2%;
+  justify-content: space-between;
+  align-items: flex-start;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+  .logo,
+  .showSidebar {
+    cursor: pointer;
+  }
+
+  .logo {
+    max-width: 70px;
+    max-height: 70px;
+  }
+
+  .showSidebar {
+    max-width: 19px;
+    max-height: 99px;
+  }
+
+  .showSidebar:hover,
+  .logo:hover {
+    transform: scale(1.1);
+  }
+}

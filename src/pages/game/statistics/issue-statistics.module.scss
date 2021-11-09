@@ -1,0 +1,16 @@
+.statistics {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 10px;
+  row-gap: 30px;
+}
+
+.customCard {
+  width: 79px;
+  height: 127px;
+  font-size: 12px;
+}
+
+.customIssueStatistics {
+  row-gap: 0;
+}

@@ -1,0 +1,12 @@
+$second-font: var(--second-font);
+
+.deck {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+[data-selected='selected'] {
+  z-index: 9;
+}

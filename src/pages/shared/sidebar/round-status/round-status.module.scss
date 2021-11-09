@@ -1,0 +1,74 @@
+$second-font: var(--second-font);
+
+.roundStatus {
+  display: flex;
+  flex-direction: column;
+  row-gap: 17px;
+}
+
+.scoreItem,
+.scoreItemWide,
+.scoreItemNarrow {
+  display: flex;
+  flex-wrap: wrap-reverse;
+  column-gap: 17px;
+  max-width: 440px;
+}
+
+.scoreItemNarrow {
+  display: none;
+}
+
+.heading,
+.status {
+  width: 200px;
+  font: normal 700 24px $second-font;
+}
+
+.heading {
+  padding-bottom: 10px;
+}
+
+.status {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font: normal 700 30px $second-font;
+}
+
+.playerCard {
+  width: 200px;
+  font-size: 18px;
+}
+
+@media (max-width: 860px) {
+  .scoreItemWide {
+    display: none;
+  }
+  .scoreItemNarrow {
+    display: flex;
+  }
+}
+
+@media (max-width: 730px) {
+  .roundStatus {
+    max-width: 220px;
+  }
+  .scoreItem {
+    max-width: 200px;
+  }
+}
+@media (max-width: 499px) {
+  .scoreItemNarrow {
+    justify-content: center;
+  }
+  .roundStatus {
+    max-width: initial;
+    justify-content: center;
+  }
+  .scoreItem {
+    max-width: initial;
+    justify-content: center;
+  }
+}

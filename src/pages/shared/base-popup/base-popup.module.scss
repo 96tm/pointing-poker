@@ -1,0 +1,139 @@
+$overlay-z-index: var(--overlay-z-index);
+$popup-z-index: var(--popup-z-index);
+$shadow: var(--main-shadow);
+$font: var(--main-font);
+$bg-overlay: var(--bg-overlay);
+
+.transition {
+  position: absolute;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: $popup-z-index;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0);
+
+  &.active {
+    visibility: visible;
+  }
+}
+
+.modalEnter {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0);
+}
+.modalEnterActive {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+  transition: opacity 600ms ease-in, visibility 600ms, transform 600ms;
+}
+
+.modalEnterDone {
+  opacity: 1;
+  transform: scale(1);
+  visibility: visible;
+}
+
+.modalExit {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+.modalExitActive {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0);
+  transition: opacity 400ms ease-out, visibility 400ms, transform 400ms ease-out;
+}
+
+.modalExitDone {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0);
+}
+
+.overlay {
+  position: fixed;
+  z-index: $overlay-z-index;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: $bg-overlay;
+}
+
+.popupContainer {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: $popup-z-index;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+.popup {
+  position: fixed;
+  display: flex;
+  flex-flow: column nowrap;
+  width: 60%;
+  max-width: 876px;
+  padding: 36px 40px 33px;
+  background: #ffffff;
+  box-shadow: $shadow;
+}
+
+.heading {
+  padding-bottom: 25px;
+  font: normal 700 64px/75px $font;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-around;
+  flex-flow: row wrap;
+  row-gap: 15px;
+  width: 100%;
+  margin-top: auto;
+}
+
+.buttonOk,
+.buttonCancel {
+  width: 189px;
+  height: 47px;
+}
+
+.content {
+  display: flex;
+  flex: 1;
+  padding-bottom: 25px;
+  word-break: break-all;
+}
+
+@media (max-width: 1000px) {
+  .heading {
+    font-size: 40px;
+    line-height: 150%;
+  }
+}
+
+@media (max-width: 640px) {
+  .heading {
+    font-size: 26px;
+    line-height: 150%;
+  }
+  .popup {
+    width: 90%;
+  }
+}

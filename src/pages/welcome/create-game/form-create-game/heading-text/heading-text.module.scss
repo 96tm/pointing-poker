@@ -1,0 +1,30 @@
+$main-font: var(--main-font);
+
+.left {
+  text-align: start;
+}
+
+.left.left {
+  width: 100%;
+}
+
+.title {
+  font: normal bold 64px/75px $main-font;
+  color: #000000;
+}
+
+@media (max-width: 1000px) {
+  .title {
+    font-size: 40px;
+  }
+}
+
+@media (max-width: 700px) {
+  .title {
+    font-size: 24px;
+  }
+  .label {
+    font-size: 18px;
+    font-weight: 500;
+  }
+}

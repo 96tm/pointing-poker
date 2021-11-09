@@ -1,0 +1,26 @@
+.container {
+  width: 80%;
+  padding-bottom: 0.5em;
+  color: gray;
+}
+.role {
+  font-size: 12px;
+  text-align: start;
+}
+.playersContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  font-size: 17px;
+}
+
+@media (max-width: 530px) {
+  .container {
+    margin: 0 auto;
+  }
+}
+@media (max-width: 400px) {
+  .container {
+    width: 200px;
+  }
+}

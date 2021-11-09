@@ -1,0 +1,96 @@
+$font: var(--second-font);
+$shadow: var(--main-shadow);
+$bg-blue: var(--bg-blue);
+
+.settingsList {
+  display: flex;
+  width: 50%;
+  flex-direction: column;
+  text-align: start;
+}
+.itemSettings,
+.settingsCard {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 1%;
+}
+.settingsCard {
+  flex-direction: column;
+  align-items: flex-start;
+}
+.setting {
+  font: normal bold 18px $font;
+  cursor: pointer;
+}
+.select {
+  width: 35%;
+  border: 1px solid $bg-blue;
+  box-shadow: inset $shadow;
+  border-radius: 0px 0px 0px 10px;
+}
+.container {
+  display: flex;
+  justify-content: flex-end;
+}
+.switcher {
+  width: 3em !important;
+  cursor: pointer;
+  height: 1.4em;
+}
+
+.right {
+  text-align: start;
+}
+
+.playCards {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  width: 200%;
+}
+
+@media (max-width: 1080px) {
+  .settingsList {
+    width: 65%;
+  }
+  .setting {
+    font-size: 16px;
+  }
+  .playCards {
+    width: 130%;
+  }
+}
+
+@media (max-width: 820px) {
+  .settingsList {
+    width: 85%;
+  }
+  .playCards {
+    width: 118%;
+  }
+  .setting {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 530px) {
+  .settingsList {
+    width: 80%;
+    text-align: start;
+    margin: 0 auto;
+  }
+  .playCards {
+    width: 101%;
+  }
+  .select {
+    width: 45%;
+  }
+}
+
+@media (max-width: 425px) {
+  .setting {
+    font-size: 12px;
+  }
+}

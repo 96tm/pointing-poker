@@ -1,0 +1,55 @@
+$btn-background: var(--bg-blue);
+$font: var(--second-font);
+$page-width: var(--page-width);
+$page-width-sidebar: var(--page-width-sidebar);
+$button-width: 189px;
+$shadow: var(--main-shadow);
+
+.container {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+}
+.content {
+  width: 70%;
+  max-width: $page-width;
+  padding: 2% 3% 0;
+  box-shadow: $shadow;
+}
+.contentWithSidebar {
+  max-width: $page-width-sidebar;
+}
+
+.btnExitContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin: 3% 0;
+}
+.btnExit {
+  width: 8em;
+  font-weight: 500;
+  background: #ffffff;
+  color: $btn-background;
+  border: 1px solid $btn-background;
+  text-shadow: $shadow;
+}
+
+@media (max-width: 946px) {
+  .btnExitContainer {
+    display: flex;
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 530px) {
+  .btnExitContainer {
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 499px) {
+  .contentWithSidebar {
+    display: none;
+  }
+}

@@ -1,0 +1,32 @@
+.container {
+  display: flex;
+  margin-left: auto;
+}
+
+.lobbyControls {
+  display: flex;
+  column-gap: 0.5em;
+}
+
+.iconDelete,
+.iconEdit {
+  display: block;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.5);
+  }
+}
+.iconDelete {
+  width: 17px;
+  height: 20.5px;
+}
+.iconEdit {
+  width: 19px;
+  height: 21px;
+}
+
+.buttonCloseContainer {
+  position: relative;
+  margin-left: auto;
+  transform: translateX(12px);
+}
